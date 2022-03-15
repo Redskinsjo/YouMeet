@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { AiOutlineMail } from "react-icons/ai";
-import { IoMdSend } from "react-icons/io";
-import { BiArrowToRight } from "react-icons/bi";
-import { useForm } from "react-hook-form";
-import { useQuery } from "@apollo/client";
+import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
+import { AiOutlineMail } from 'react-icons/ai'
+import { IoMdSend } from 'react-icons/io'
+import { BiArrowToRight } from 'react-icons/bi'
+import { useForm } from 'react-hook-form'
+import { useQuery } from '@apollo/client'
 
-import Header from "../../components/header";
+import Header from '../../components/header'
 import {
   Drawer,
   List,
@@ -14,37 +14,44 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
-} from "@mui/material";
-import EmailField from "../../components/email-field";
-import { GetOneEmployee } from "../../apollo/queries";
+} from '@mui/material'
+import EmailField from '../../components/email-field'
+import { GetOneEmployee } from '../../apollo/queries'
 
 const EmailMe = () => {
-  const router = useRouter();
+  const router = useRouter()
   const { data } = useQuery(GetOneEmployee, {
     variables: {
       id: router.query.employeeId,
     },
-  });
-  console.log(data);
-  const [open, setOpen] = useState(false);
-  console.log(router);
-  const toggleDrawer = (action: any) => setOpen(action);
+  })
+  console.log(data)
+  const [open, setOpen] = useState(false)
+  console.log(router)
+  const toggleDrawer = (action: any) => setOpen(action)
   const { control, reset, handleSubmit } = useForm({
     defaultValues: {
-      to: data.oneEmployee.email,
-      subject: "",
-      text: "",
+      to: '',
+      subject: '',
+      text: '',
     },
-  });
+  })
 
   const onSubmit = (data: any) => {
-    console.log(data);
-  };
+    console.log(data)
+  }
 
   useEffect(() => {
+    if (data) {
+      reset({
+        to: data.oneEmployee.email,
+        subject: '',
+        text: '',
+      })
+    }
     // window.open(`mailto:${"jonthan.carnos@gmail.com"}`);
     // window.prompt("to:", "Jonathan.carnos@gmail.com");
-  }, []);
+  }, [data])
 
   const list = () => (
     <div
@@ -53,7 +60,7 @@ const EmailMe = () => {
       onClick={() => toggleDrawer(false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <AiOutlineMail /> : <IoMdSend />}
@@ -64,7 +71,7 @@ const EmailMe = () => {
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <AiOutlineMail /> : <IoMdSend />}
@@ -74,7 +81,7 @@ const EmailMe = () => {
         ))}
       </List>
     </div>
-  );
+  )
 
   return (
     <div className="h-full w-full flex flex-col">
@@ -99,7 +106,7 @@ const EmailMe = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EmailMe;
+export default EmailMe

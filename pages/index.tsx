@@ -24,12 +24,12 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!authenticated) {
-      signIn()
-      // router.push('/login')
+      // signIn()
+      router.push('/login')
     }
   }, [])
   console.log('line 29', data)
-  return authenticated ? (
+  return authenticated && data ? (
     <div className="h-full">
       <Head>
         <title>Create Next App</title>
