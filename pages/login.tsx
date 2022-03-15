@@ -9,6 +9,7 @@ import LoginForm from '../components/login-form'
 import Header from '../components/header'
 import { RootState } from '../redux/store'
 import { withPublic } from '../components/route-protection'
+import { CLIENT_RENEG_WINDOW } from 'tls'
 
 function Login({ providers }: any) {
   const dispatch = useDispatch()
@@ -18,29 +19,22 @@ function Login({ providers }: any) {
   const { data: session } = useSession()
 
   useEffect(() => {
-    if (authenticated) {
-      router.push('/')
-    }
-  }, [])
-
-  useEffect(() => {
     if (session) {
-      router.push('/')
+      router.replace('/')
     }
   }, [session])
-  return (
-    !session && (
-      <div className="h-full">
-        <Head>
-          <title>Login</title>
-        </Head>
-        <Header classes="absolute w-full" />
-        <div className="flex items-center justify-center absolute w-full h-full">
-          <LoginForm dispatch={dispatch} providers={providers} />
-        </div>
+
+  return !session ? (
+    <div className="h-full">
+      <Head>
+        <title>Login</title>
+      </Head>
+      <Header classes="absolute w-full" />
+      <div className="flex items-center justify-center absolute w-full h-full">
+        <LoginForm dispatch={dispatch} providers={providers} />
       </div>
-    )
-  )
+    </div>
+  ) : null
 }
 
 export async function getServerSideProps() {

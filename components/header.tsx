@@ -6,7 +6,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 import { RootState } from '../redux/store'
 import { setUsername } from '../redux/slice'
@@ -21,6 +21,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
   const open = Boolean(anchorEl)
   const dispatch = useDispatch()
   const router = useRouter()
+  const { data: session } = useSession()
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget)
@@ -56,7 +57,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
           onMouseEnter={handleClick}
         >
           <BsFillPersonFill style={{ fontSize: 28, marginRight: 15 }} />
-          <div>{username}</div>
+          <div>{session?.user?.name}</div>
         </div>
         <Menu
           id="basic-menu"

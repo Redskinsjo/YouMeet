@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 import { useQuery } from '@apollo/client'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 import { withProtected } from '../components/route-protection'
 import { RootState } from '../redux/store'
@@ -21,15 +21,16 @@ const Home: NextPage = () => {
   const router = useRouter()
   const [authenticated, setAuthenticated] = useState(username ? true : false)
   const { data } = useQuery(GetEmployees)
+  const { data: session } = useSession()
 
   useEffect(() => {
-    if (!authenticated) {
+    if (!session) {
       // signIn()
       router.push('/login')
     }
   }, [])
   console.log('line 29', data)
-  return authenticated && data ? (
+  return session && data ? (
     <div className="h-full">
       <Head>
         <title>Create Next App</title>

@@ -46,6 +46,7 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
   const oauthIcon = useCallback((id) => {
     return id !== 'email' ? React.createElement(nodeEl[id], null) : <></>
   }, [])
+
   return (
     <form
       className="shadow-xl hover:shadow-2xl flex flex-col py-8 px-14 bg-slate-50"
