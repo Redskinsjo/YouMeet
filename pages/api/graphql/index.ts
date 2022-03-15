@@ -40,9 +40,7 @@ export default async function handler(
     res.end()
     return false
   }
-  await mongoose.connect(
-    `mongodb+srv://Jonathan:${process.env.MONGODB_PASSWORD}@youmeet.3l3iy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-  )
+  await mongoose.connect(process.env.MONGODB_URI)
 
   await startServer
   await apolloServer.createHandler({

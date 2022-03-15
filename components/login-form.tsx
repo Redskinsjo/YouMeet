@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -33,47 +33,22 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
     watch,
     formState: { errors },
   } = useForm({ defaultValues: { email: '' } })
+  const [email, setEmail] = useState()
 
   const router = useRouter()
-
-  const onSubmit = (data: any) => {
-    // signIn()
-    dispatch(setUsername(data.username))
-    router.push('/')
-    console.log(data)
-  }
 
   const oauthIcon = useCallback((id) => {
     return id !== 'email' ? React.createElement(nodeEl[id], null) : <></>
   }, [])
 
   return (
-    <form
-      className="shadow-xl hover:shadow-2xl flex flex-col py-8 px-14 bg-slate-50"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <div className="shadow-xl hover:shadow-2xl flex flex-col py-8 px-14 bg-slate-50">
       <h1
         className="text-3xl font-bold mb-6"
         style={{ marginBottom: styles.marginBottom }}
       >
         Connect yourself
       </h1>
-      {/*  <Field control={control} name="username" sx={styles} />
-    //    <Field control={control} name="password" sx={styles} />
-    //   <div style={{ display: 'flex', justifyContent: 'end' }}>
-    //     <Button
-    //       type="submit"
-    //       variant="contained"
-    //       sx={{
-    //         color: 'black',
-    //         '&:hover': {
-    //           color: 'white',
-    //         },
-    //       }}
-    //     >
-    //       Submit
-    //     </Button>
-       </div> */}
       <>
         {Object.values(providers).map((provider: any) => {
           console.log(provider)
@@ -87,7 +62,13 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
               )}
               <Button
                 variant="contained"
-                onClick={() => signIn(provider.id)}
+                onClick={handleSubmit((data) => {
+                  if (provider.id === 'email') {
+                    signIn(provider.id, { email: data.email })
+                  } else {
+                    signIn(provider.id)
+                  }
+                })}
                 className="bg-slate-200 text-black hover:text-white"
                 startIcon={oauthIcon(provider.id)}
               >
@@ -100,6 +81,6 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
           <Link href="/signup">Sign up</Link>
         </div>
       </>
-    </form>
+    </div>
   )
 }
