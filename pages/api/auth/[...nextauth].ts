@@ -9,12 +9,12 @@ export default NextAuth({
   providers: [
     // OAuth authentication providers...
     FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENTID,
-      clientSecret: process.env.FACEBOOK_CLIENTSECRET,
+      clientId: `${process.env.FACEBOOK_CLIENTID}`,
+      clientSecret: `${process.env.FACEBOOK_CLIENTSECRET}`,
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENTID,
-      clientSecret: process.env.GOOGLE_CLIENTSECRET,
+      clientId: `${process.env.GOOGLE_CLIENTID}`,
+      clientSecret: `${process.env.GOOGLE_CLIENTSECRET}`,
     }),
     // Passwordless / email sign in
     EmailProvider({
