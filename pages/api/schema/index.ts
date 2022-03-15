@@ -16,9 +16,21 @@ const typeDefs = gql`
     description: String
   }
 
+  type SendEmailResponse {
+    hello: String
+  }
+
   type Query {
     employees: [Employee]
     oneEmployee(id: ID): Employee
+  }
+  type Mutation {
+    sendEmail(
+      to: String
+      subject: String
+      text: String
+      from: String
+    ): SendEmailResponse
   }
 `;
 

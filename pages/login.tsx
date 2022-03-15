@@ -1,37 +1,51 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useSession, getSession, getProviders } from 'next-auth/react'
+// import { signIn, csrfToken, providers } from 'next-auth/client'
 
-import LoginForm from "../components/login-form";
-import Header from "../components/header";
-import { RootState } from "../redux/store";
-import { withPublic } from "../components/route-protection";
+import LoginForm from '../components/login-form'
+import Header from '../components/header'
+import { RootState } from '../redux/store'
+import { withPublic } from '../components/route-protection'
 
-function Login() {
-  const dispatch = useDispatch();
-  const username = useSelector((state: RootState) => state.user.username);
-  const router = useRouter();
-  const [authenticated, setAuthenticated] = useState(username ? true : false);
+function Login({ providers }: any) {
+  const dispatch = useDispatch()
+  const username = useSelector((state: RootState) => state.user.username)
+  const router = useRouter()
+  const [authenticated, setAuthenticated] = useState(username ? true : false)
+  const { data: session } = useSession()
 
   useEffect(() => {
     if (authenticated) {
-      router.push("/");
+      router.push('/')
     }
-  }, []);
+  }, [])
+
+  useEffect(() => {
+    if (session) {
+      router.push('/')
+    }
+  }, [session])
   return (
-    <div className="h-full">
-      <Head>
-        <title>Login</title>
-      </Head>
-      <Header classes="absolute w-full" />
-      <div className="flex items-center justify-center absolute w-full h-full">
-        <LoginForm dispatch={dispatch} />
+    !session && (
+      <div className="h-full">
+        <Head>
+          <title>Login</title>
+        </Head>
+        <Header classes="absolute w-full" />
+        <div className="flex items-center justify-center absolute w-full h-full">
+          <LoginForm dispatch={dispatch} providers={providers} />
+        </div>
       </div>
-    </div>
-  );
+    )
+  )
 }
 
-export default Login;
+export async function getServerSideProps() {
+  return { props: { providers: await getProviders() } }
+}
+
+export default Login
 // export default withPublic(Login);

@@ -18,3 +18,27 @@ export const GetEmployees = gql`
     }
   }
 `;
+
+export const GetOneEmployee = gql`
+  query GetOneEmployee($id: ID) {
+    oneEmployee(id: $id) {
+      _id
+      firstname
+      lastname
+      email
+    }
+  }
+`;
+
+export const SendEmail = gql`
+  mutation SendEmail(
+    $to: String
+    $subject: String
+    $text: String
+    $from: String
+  ) {
+    sendEmail(to: $to, subject: $subject, text: $text, from: $from) {
+      hello
+    }
+  }
+`;
