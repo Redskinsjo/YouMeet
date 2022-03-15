@@ -72,10 +72,7 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
     //     >
     //       Submit
     //     </Button>
-    //   </div>
-    //   <div className="text-blue-400 hover:text-blue-500">
-    //     <Link href="/signup">Sign up</Link>
-  </div> */}
+       </div> */}
       <>
         {Object.values(providers).map((provider: any) => {
           console.log(provider)
@@ -98,6 +95,9 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
             </div>
           )
         })}
+        <div className="mt-4 text-blue-400 hover:text-blue-500">
+          <Link href="/signup">Sign up</Link>
+        </div>
       </>
     </form>
   )
