@@ -1,19 +1,19 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Button } from "@mui/material";
-import Link from "next/link";
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { Button } from '@mui/material'
+import Link from 'next/link'
 
-import Field from "./field";
-import { setUsername } from "../redux/slice";
+import Field from './field'
+import { setUsername } from '@/redux/slice'
 
 const styles = {
-  padding: "8px 0px",
-  marginBottom: "12px",
-  width: "100%",
-};
+  padding: '8px 0px',
+  marginBottom: '12px',
+  width: '100%',
+}
 
 interface LoginFormProps {
-  dispatch: any;
+  dispatch: any
 }
 
 export default function LoginForm({ dispatch }: LoginFormProps) {
@@ -24,18 +24,18 @@ export default function LoginForm({ dispatch }: LoginFormProps) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      username: "",
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: "",
-      confirm_password: "",
+      username: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      confirm_password: '',
     },
-  });
+  })
 
   const onSubmit = (data: any) => {
-    dispatch(setUsername(data.username));
-  };
+    dispatch(setUsername(data.username))
+  }
 
   return (
     <form
@@ -59,9 +59,9 @@ export default function LoginForm({ dispatch }: LoginFormProps) {
         variant="contained"
         className="col-start-2"
         sx={{
-          color: "black",
-          "&:hover": {
-            color: "white",
+          color: 'black',
+          '&:hover': {
+            color: 'white',
           },
         }}
       >
@@ -71,5 +71,5 @@ export default function LoginForm({ dispatch }: LoginFormProps) {
         <Link href="/login">Connect Yourself</Link>
       </div>
     </form>
-  );
+  )
 }

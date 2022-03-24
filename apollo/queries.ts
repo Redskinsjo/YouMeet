@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 export const GetEmployees = gql`
   query GetEmployees {
@@ -17,10 +17,10 @@ export const GetEmployees = gql`
       description
     }
   }
-`;
+`
 
-export const GetOneEmployee = gql`
-  query GetOneEmployee($id: ID) {
+export const GetSendEmailData = gql`
+  query GetSendEmailData($id: ID) {
     oneEmployee(id: $id) {
       _id
       firstname
@@ -28,7 +28,22 @@ export const GetOneEmployee = gql`
       email
     }
   }
-`;
+`
+
+export const GetEmailProfileData = gql`
+  query GetEmailProfileData($id: ID) {
+    oneEmployee(id: $id) {
+      firstname
+      lastname
+      avatar
+      color
+      from
+      starting
+      job
+      description
+    }
+  }
+`
 
 export const SendEmail = gql`
   mutation SendEmail(
@@ -41,4 +56,4 @@ export const SendEmail = gql`
       hello
     }
   }
-`;
+`

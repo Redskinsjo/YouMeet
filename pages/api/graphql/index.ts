@@ -40,7 +40,7 @@ export default async function handler(
     res.end()
     return false
   }
-  await mongoose.connect(process.env.MONGODB_URI)
+  await mongoose.connect(`${process.env.MONGODB_URI}`)
 
   await startServer
   await apolloServer.createHandler({

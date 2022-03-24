@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import { useSession, getSession, getProviders } from 'next-auth/react'
 // import { signIn, csrfToken, providers } from 'next-auth/client'
 
-import LoginForm from '../components/login-form'
-import Header from '../components/header'
-import { RootState } from '../redux/store'
-import { withPublic } from '../components/route-protection'
+import LoginForm from '@/components/login-form'
+import Header from '@/components/header'
+import { RootState } from '@/redux/store'
+import { withPublic } from '@/components/route-protection'
 import { CLIENT_RENEG_WINDOW } from 'tls'
 
 function Login({ providers }: any) {

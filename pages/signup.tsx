@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
-import SignupForm from "../components/signup-form";
-import Header from "../components/header";
-import { RootState } from "../redux/store";
+import SignupForm from '@/components/signup-form'
+import Header from '@/components/header'
+import { RootState } from '@/redux/store'
 
 export default function Login() {
-  const dispatch = useDispatch();
-  const username = useSelector((state: RootState) => state.user.username);
-  const router = useRouter();
-  const [authenticated, setAuthenticated] = useState(username ? true : false);
+  const dispatch = useDispatch()
+  const username = useSelector((state: RootState) => state.user.username)
+  const router = useRouter()
+  const [authenticated, setAuthenticated] = useState(username ? true : false)
 
   useEffect(() => {
     if (authenticated) {
-      router.push("/");
+      router.push('/')
     }
-  }, []);
+  }, [])
 
   return (
     <div className="h-full">
@@ -29,5 +29,5 @@ export default function Login() {
         <SignupForm dispatch={dispatch} />
       </div>
     </div>
-  );
+  )
 }

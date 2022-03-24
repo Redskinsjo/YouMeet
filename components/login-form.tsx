@@ -8,7 +8,7 @@ import { MdFacebook } from 'react-icons/md'
 import { AiFillGoogleCircle } from 'react-icons/ai'
 
 import Field from './field'
-import { setUsername } from '../redux/slice'
+import { setUsername } from '@/redux/slice'
 
 interface LoginFormProps {
   dispatch: any
@@ -51,7 +51,6 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
       </h1>
       <>
         {Object.values(providers).map((provider: any) => {
-          console.log(provider)
           return (
             <div key={provider.name} className="mt-4">
               {provider.id === 'email' && (

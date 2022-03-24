@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer'
-// import mongoose from 'mongoose'
+
 import Employee from '../models/employees'
-// const Employee = mongoose.model('Employee')
 
 const resolvers = {
   Query: {

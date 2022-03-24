@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-micro";
+import { gql } from 'apollo-server-micro'
 
 const typeDefs = gql`
   type Employee {
@@ -32,6 +32,6 @@ const typeDefs = gql`
       from: String
     ): SendEmailResponse
   }
-`;
+`
 
-export default typeDefs;
+export default typeDefs

@@ -4,7 +4,8 @@ import { useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import EmailIcon from '../components/email-icon'
+import EmailIcon from '@/components/email-icon'
+import { formatDate } from '@/utils/formats'
 
 interface EmployeesListProps {
   data: any
@@ -12,15 +13,6 @@ interface EmployeesListProps {
 
 const EmployeesList = ({ data }: EmployeesListProps) => {
   const router = useRouter()
-
-  const formatDate = useCallback((dateMs: any) => {
-    const date = new Date(dateMs)
-    const year = String(date.getFullYear())
-    const month =
-      date.getMonth() < 10 ? '0' + date.getMonth() : String(date.getMonth())
-    const day = String(date.getDate())
-    return year + month + day
-  }, [])
 
   return (
     <div className="mt-8 w-full grid grid-cols-5 justify-items-center gap-y-8">
@@ -69,7 +61,7 @@ const EmployeesList = ({ data }: EmployeesListProps) => {
                 </p>
                 <EmailIcon
                   onClick={() => {
-                    router.push(`./email/${emp._id}`)
+                    router.push(`./email/${emp._id}/send`)
                   }}
                 />
               </div>

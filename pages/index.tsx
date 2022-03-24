@@ -6,15 +6,15 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 import { useQuery } from '@apollo/client'
-import { signIn, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 
-import { withProtected } from '../components/route-protection'
-import { RootState } from '../redux/store'
-import Header from '../components/header'
-import { GetEmployees } from '../apollo/queries'
-import MapboxMap from '../components/mapbox-map'
-import EmployeesList from '../components/employees-list'
-import Footer from '../components/footer'
+import { withProtected } from '@/components/route-protection'
+import { RootState } from '@/redux/store'
+import Header from '@/components/header'
+import { GetEmployees } from '@/apollo/queries'
+import MapboxMap from '@/components/mapbox-map'
+import EmployeesList from '@/components/employees-list'
+import Footer from '@/components/footer'
 
 const Home: NextPage = () => {
   const username = useSelector((state: RootState) => state.user.username)
@@ -25,11 +25,10 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!session) {
-      // signIn()
       router.push('/login')
     }
   }, [])
-  console.log('line 29', data)
+
   return session && data ? (
     <div className="h-full">
       <Head>
@@ -42,7 +41,18 @@ const Home: NextPage = () => {
         className="w-full flex justify-center mt-16"
         style={{ background: 'linear-gradient(rgba(0,0,0,0.1),#FFF)' }}
       >
-        <MapboxMap employees={data.employees} />
+        <MapboxMap
+          center={[3, 33]}
+          zoom={1.5}
+          employees={data.employees}
+          styles={{
+            width: '80%',
+            minHeight: '800px',
+            margin: 20,
+            borderRadius: 20,
+            border: '1px solid black',
+          }}
+        />
       </div>
       <EmployeesList data={data} />
       <Footer />
