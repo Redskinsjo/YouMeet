@@ -18,13 +18,9 @@ export default function EmailEmployeeProfile() {
   })
   const [latLong, setLatLong] = useState<number[] | []>([])
 
-  console.log(data)
-
   useEffect(() => {
     if (data) {
       const country = countries.ref_country_codes.find((country: any) => {
-        console.log(country.country)
-        console.log(data.from)
         return country.country === data.oneEmployee?.from
       })
       const coords = []
@@ -61,7 +57,7 @@ export default function EmailEmployeeProfile() {
           </div>
           <div className="mr-8 mt-8">
             <Image
-              // style={{ position: 'absolute' }}
+              // style={{ position: 'relative' }}
               src={data.oneEmployee?.avatar}
               alt={
                 data.oneEmployee?.firstname + ' ' + data.oneEmployee?.lastname

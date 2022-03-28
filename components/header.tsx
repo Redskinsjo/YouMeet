@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
 
 import { RootState } from '@/redux/store'
-import { setUsername } from '@/redux/slice'
+import { setUsername } from '@/redux/features/userSlice'
 
 interface HeaderComponentProps {
   classes?: string

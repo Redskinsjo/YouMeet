@@ -1,3 +1,4 @@
+import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { AiOutlineMail } from 'react-icons/ai'
@@ -8,6 +9,9 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/react'
 import { ClipLoader } from 'react-spinners'
+// import Mailgun from 'mailgun.js'
+// import formData from 'form-data'
+import emailjs from '@emailjs/browser'
 
 import Header from '@/components/header'
 import {
@@ -23,9 +27,9 @@ import { GetSendEmailData } from '@/apollo/queries'
 import EmailForm, { FormInputs } from '@/components/email-form'
 import EmailEmployeeProfile from '@/components/email-employee-profile'
 
-const EmailMe = () => {
+const EmailMe: NextPage = () => {
   const router = useRouter()
-  const { data } = useQuery(GetSendEmailData, {
+  const { data: employee } = useQuery(GetSendEmailData, {
     variables: {
       id: router.query.employeeId,
     },
@@ -48,22 +52,49 @@ const EmailMe = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormInputs> = (data: any) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<FormInputs> = async (data: any) => {
+    const recipients = data.to.split(',')
+
+    Promise.all(
+      recipients.map((recipient: any) => {
+        const templateParams = {
+          to_name: session?.user?.name,
+          original_recipient:
+            employee.oneEmployee.firstname +
+            ' ' +
+            employee.oneEmployee.lastname,
+          subject: data.subject,
+          text: data.text,
+          to: recipient,
+        }
+
+        return emailjs.send(
+          `${process.env.EMAILJS_SERVICEID}`,
+          `${process.env.EMAILJS_TEMPLATEID}`,
+          templateParams,
+          `${process.env.EMAILJS_USERID}`
+        )
+      })
+    ).then((values) => {
+      reset({
+        to: `${session?.user?.email},Jonathan.carnos@gmail.com`,
+        subject: '',
+        text: '',
+      })
+
+      console.log(values)
+    })
   }
 
   useEffect(() => {
-    if (data) {
-      console.log(data)
+    if (employee) {
       reset({
-        to: data.oneEmployee.email,
+        to: `${session?.user?.email},Jonathan.carnos@gmail.com`,
         subject: '',
         text: '',
       })
     }
-    // window.open(`mailto:${"jonthan.carnos@gmail.com"}`);
-    // window.prompt("to:", "Jonathan.carnos@gmail.com");
-  }, [data])
+  }, [employee])
 
   const list = () => (
     <div
@@ -135,11 +166,14 @@ const EmailMe = () => {
             <BiArrowToRight fontSize="24px" />
           </div>
         )}
-        <EmailForm
-          control={control}
-          handleSubmit={handleSubmit}
-          onSubmit={onSubmit}
-        />
+        {employee && (
+          <EmailForm
+            control={control}
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+            employeeEmail={employee.oneEmployee.email}
+          />
+        )}
         <EmailEmployeeProfile />
       </div>
     </div>

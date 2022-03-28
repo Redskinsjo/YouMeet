@@ -35,8 +35,6 @@ function MapboxMap({
     return map
   }
 
-  console.log(center)
-
   useEffect(() => {
     const node = mapNode.current
     // if the window object is not found, that means

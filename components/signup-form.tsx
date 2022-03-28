@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import Link from 'next/link'
 
 import Field from './field'
-import { setUsername } from '@/redux/slice'
+import { setUsername } from '@/redux/features/userSlice'
 
 const styles = {
   padding: '8px 0px',

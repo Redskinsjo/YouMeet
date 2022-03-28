@@ -4,14 +4,36 @@ import Employee from '../models/employees'
 
 const resolvers = {
   Query: {
-    employees: async () => {
-      console.log('lifne fetch')
-      const employees = await Employee.find()
-      console.log('line 10', employees)
+    employees: async (parent: any, args: any) => {
+      let regex
+      let employees
+      // const findEmployees = async (regex: any, sort: any, filter: any) => {
+      //   let employees
+      //   if (sort) {
+      //     employees = await Employee.find(
+      //       filter ? { fullname: regex } : {},
+      //       null,
+      //       {
+      //         sort: { starting: sort === 1 ? 1 : -1 },
+      //       }
+      //     )
+      //   } else {
+      //     employees = await Employee.find(filter ? { fullname: regex } : {})
+      //   }
+      //   return employees
+      // }
+      console.log(args)
+      // console.log(args.sort)
+      if (args.filter) {
+        regex = new RegExp(`^${args.filter}|${args.filter}`, 'gi')
+      }
+      employees = await Employee.find(
+        args.filter ? { fullname: regex } : {}
+      ).sort(args.sort === 1 ? 'starting' : args.sort === -1 ? '-starting' : {})
+
       return employees
     },
     oneEmployee: async (parent: any, args: any) => {
-      console.log(args)
       const employee = await Employee.findById(args.id)
       return employee
     },

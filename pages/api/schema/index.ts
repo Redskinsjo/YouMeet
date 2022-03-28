@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-micro'
 const typeDefs = gql`
   type Employee {
     _id: ID
+    fullname: String
     firstname: String
     lastname: String
     email: String
@@ -21,7 +22,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    employees: [Employee]
+    employees(filter: String, sort: Int): [Employee]
     oneEmployee(id: ID): Employee
   }
   type Mutation {

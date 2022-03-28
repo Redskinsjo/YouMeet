@@ -24,8 +24,6 @@ function Login({ providers }: any) {
     }
   }, [session])
 
-  console.log(providers)
-
   return !session ? (
     <div className="h-full">
       <Head>

@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface AppState {
-  username: string;
+  username: string
 }
 
 const initialState: AppState = {
-  username: "",
-};
+  username: '',
+}
 
-export const counterSlice = createSlice({
-  name: "user",
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
     setUsername: (state, action: PayloadAction<string>) => {
@@ -17,12 +17,12 @@ export const counterSlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.username = action.payload;
+      state.username = action.payload
     },
   },
-});
+})
 
 // Action creators are generated for each case reducer function
-export const { setUsername } = counterSlice.actions;
+export const { setUsername } = userSlice.actions
 
-export default counterSlice.reducer;
+export default userSlice.reducer

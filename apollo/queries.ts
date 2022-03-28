@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client'
 
 export const GetEmployees = gql`
-  query GetEmployees {
-    employees {
+  query GetEmployees($filter: String, $sort: Int) {
+    employees(filter: $filter, sort: $sort) {
       _id
+      fullname
       firstname
       lastname
       email

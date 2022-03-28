@@ -8,7 +8,7 @@ import { MdFacebook } from 'react-icons/md'
 import { AiFillGoogleCircle } from 'react-icons/ai'
 
 import Field from './field'
-import { setUsername } from '@/redux/slice'
+import { setUsername } from '@/redux/features/userSlice'
 
 interface LoginFormProps {
   dispatch: any
