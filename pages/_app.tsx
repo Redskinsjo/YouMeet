@@ -7,17 +7,18 @@ import GraphQLProvider from '../apollo'
 import { store } from '@/redux/store'
 import RouteGuard from '@/components/route-guard'
 import { RootState } from '@/redux/store'
+import ErrorBoundary from '@/components/error-boundaries'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <ReduxProvider store={store}>
-      {/* <RouteGuard> */}
-      <GraphQLProvider>
-        <SessionProvider session={session}>
-          <Component {...pageProps} />
-        </SessionProvider>
-      </GraphQLProvider>
-      {/* </RouteGuard> */}
+      <ErrorBoundary>
+        <GraphQLProvider>
+          <SessionProvider session={session}>
+            <Component {...pageProps} />
+          </SessionProvider>
+        </GraphQLProvider>
+      </ErrorBoundary>
     </ReduxProvider>
   )
 }

@@ -36,7 +36,7 @@ const Home: NextPage = () => {
   const handleChangeSearch = (e: any) => setSearch(e.target.value)
   const [criteria, setCriteria] = useState(2)
   const handleChangeCriteria = (e: any) => setCriteria(e.target.value)
-  console.log(criteria)
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch(fetchingEmployees())
@@ -45,44 +45,6 @@ const Home: NextPage = () => {
         sort: criteria,
       })
       dispatch(setEmployees(empl.data.employees))
-      // // simulate request timeout
-      // const request = new Promise((resolve) => {
-      //   // setLoading(true);
-      //   dispatch(fetchingActors())
-      //   setTimeout(() => resolve(data), 600)
-      // })
-
-      // request.then((result) => {
-      //   let list = result.actors
-      //   let actors
-      //   // handle search
-      //   if (search) {
-      //     const regex = new RegExp(`^${search}|${search}`, 'gi')
-      //     const fullname = (first, last) => first + ' ' + last
-      //     list = list.filter((el) => {
-      //       return regex.test(fullname(el.firstname, el.lastname))
-      //     })
-      //   }
-      //   // handle sort
-      //   if (criteria === 1) {
-      //     const sortedActors = list.sort((a, b) => a.price - b.price)
-      //     actors = [...sortedActors]
-      //   } else {
-      //     const sortedActors = list.sort((a, b) => {
-      //       return (
-      //         new Date(b.careerStart).getTime() -
-      //         new Date(a.careerStart).getTime()
-      //       )
-      //     })
-      //     actors = [...sortedActors]
-      //   }
-
-      //   // stock data
-      //   dispatch(fetchedActors(actors))
-      //   // setActors(actors);
-      //   // setLoading(false);
-      //   return result
-      // })
     }
     fetchData()
   }, [criteria, search])

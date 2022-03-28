@@ -7,23 +7,7 @@ const resolvers = {
     employees: async (parent: any, args: any) => {
       let regex
       let employees
-      // const findEmployees = async (regex: any, sort: any, filter: any) => {
-      //   let employees
-      //   if (sort) {
-      //     employees = await Employee.find(
-      //       filter ? { fullname: regex } : {},
-      //       null,
-      //       {
-      //         sort: { starting: sort === 1 ? 1 : -1 },
-      //       }
-      //     )
-      //   } else {
-      //     employees = await Employee.find(filter ? { fullname: regex } : {})
-      //   }
-      //   return employees
-      // }
-      console.log(args)
-      // console.log(args.sort)
+
       if (args.filter) {
         regex = new RegExp(`^${args.filter}|${args.filter}`, 'gi')
       }
