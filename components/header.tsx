@@ -8,7 +8,6 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
 
-import { RootState } from '@/redux/store'
 import { setUsername } from '@/redux/features/userSlice'
 
 interface HeaderComponentProps {
@@ -16,7 +15,6 @@ interface HeaderComponentProps {
 }
 
 export default function HeaderComponent({ classes }: HeaderComponentProps) {
-  const username = useSelector((state: RootState) => state.user.username)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const dispatch = useDispatch()

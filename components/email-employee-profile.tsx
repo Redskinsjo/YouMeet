@@ -57,12 +57,10 @@ export default function EmailEmployeeProfile() {
           </div>
           <div className="mr-8 mt-8">
             <Image
-              // style={{ position: 'relative' }}
               src={data.oneEmployee?.avatar}
               alt={
                 data.oneEmployee?.firstname + ' ' + data.oneEmployee?.lastname
               }
-              // layout="raw"
               width={120}
               height={120}
             />

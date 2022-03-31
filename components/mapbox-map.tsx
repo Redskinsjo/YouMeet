@@ -14,14 +14,13 @@ interface MapboxMapProps {
 
 function MapboxMap({
   initialOptions,
-  onMapLoaded,
+  // onMapLoaded,
   onMapRemoved,
   center,
   zoom,
   employees = [],
   styles,
 }: MapboxMapProps) {
-  const [map, setMap] = useState<mapboxgl.Map>()
   const mapNode = useRef(null)
 
   // Add the markers to the map and store the map
@@ -31,8 +30,6 @@ function MapboxMap({
         .setLngLat([emp.long, emp.lat])
         .addTo(map)
     })
-    setMap(map)
-    return map
   }
 
   useEffect(() => {

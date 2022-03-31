@@ -33,7 +33,6 @@ export default function Search({
           </InputAdornment>
         }
         disableUnderline
-        // classes={{ focused:  { transition: 'none !important' } }}
         sx={{
           border: '1px solid black',
           padding: '4px',

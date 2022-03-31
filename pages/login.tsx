@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useSession, getSession, getProviders } from 'next-auth/react'
-// import { signIn, csrfToken, providers } from 'next-auth/client'
+import { useSession, getProviders } from 'next-auth/react'
+import { Providers } from 'next-auth'
 
 import LoginForm from '@/components/login-form'
 import Header from '@/components/header'
-import { RootState } from '@/redux/store'
-import { withPublic } from '@/components/route-protection'
-import { CLIENT_RENEG_WINDOW } from 'tls'
 
-function Login({ providers }: any) {
-  const dispatch = useDispatch()
-  const username = useSelector((state: RootState) => state.user.username)
+function Login({ providers }: { providers: Providers }) {
   const router = useRouter()
-  const [authenticated, setAuthenticated] = useState(username ? true : false)
   const { data: session } = useSession()
 
   useEffect(() => {
@@ -31,7 +24,7 @@ function Login({ providers }: any) {
       </Head>
       <Header classes="absolute w-full" />
       <div className="flex items-center justify-center absolute w-full h-full">
-        <LoginForm dispatch={dispatch} providers={providers} />
+        <LoginForm providers={providers} />
       </div>
     </div>
   ) : null
@@ -42,4 +35,3 @@ export async function getServerSideProps() {
 }
 
 export default Login
-// export default withPublic(Login);

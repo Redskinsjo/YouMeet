@@ -9,8 +9,6 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/react'
 import { ClipLoader } from 'react-spinners'
-// import Mailgun from 'mailgun.js'
-// import formData from 'form-data'
 import emailjs from '@emailjs/browser'
 
 import Header from '@/components/header'

@@ -1,18 +1,16 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button } from '@mui/material'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { MdFacebook } from 'react-icons/md'
 import { AiFillGoogleCircle } from 'react-icons/ai'
+import { Providers } from 'next-auth'
 
 import Field from './field'
-import { setUsername } from '@/redux/features/userSlice'
 
 interface LoginFormProps {
-  dispatch: any
-  providers: any
+  providers: Providers
 }
 
 const styles = {
@@ -21,21 +19,13 @@ const styles = {
   width: '100%',
 }
 
-const nodeEl: any = {
+const nodeEl: { [key: string]: React.FC } = {
   facebook: MdFacebook,
   google: AiFillGoogleCircle,
 }
 
-export default function LoginForm({ dispatch, providers }: LoginFormProps) {
-  const {
-    control,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({ defaultValues: { email: '' } })
-  const [email, setEmail] = useState()
-
-  const router = useRouter()
+export default function LoginForm({ providers }: LoginFormProps) {
+  const { control, handleSubmit } = useForm({ defaultValues: { email: '' } })
 
   const oauthIcon = useCallback((id) => {
     return id !== 'email' ? React.createElement(nodeEl[id], null) : <></>
@@ -76,9 +66,9 @@ export default function LoginForm({ dispatch, providers }: LoginFormProps) {
             </div>
           )
         })}
-        <div className="mt-4 text-blue-400 hover:text-blue-500">
+        {/* <div className="mt-4 text-blue-400 hover:text-blue-500">
           <Link href="/signup">Sign up</Link>
-        </div>
+        </div> */}
       </>
     </div>
   )

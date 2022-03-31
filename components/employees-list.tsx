@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import moment from 'moment'
-import { useCallback } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import EmailIcon from '@/components/email-icon'

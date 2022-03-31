@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -8,7 +9,6 @@ import { ClipLoader } from 'react-spinners'
 import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/react'
 
-import { withProtected } from '@/components/route-protection'
 import { RootState } from '@/redux/store'
 import Header from '@/components/header'
 import { GetEmployees } from '@/apollo/queries'
@@ -24,7 +24,6 @@ import {
 const Home: NextPage = () => {
   const username = useSelector((state: RootState) => state.user.username)
   const router = useRouter()
-  const [authenticated, setAuthenticated] = useState(username ? true : false)
   const { data, refetch } = useQuery(GetEmployees, {
     variables: { filter: '', sort: 2 },
   })
@@ -33,9 +32,11 @@ const Home: NextPage = () => {
 
   // local state
   const [search, setSearch] = useState('')
-  const handleChangeSearch = (e: any) => setSearch(e.target.value)
-  const [criteria, setCriteria] = useState(2)
-  const handleChangeCriteria = (e: any) => setCriteria(e.target.value)
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSearch(e.target.value)
+  const [criteria, setCriteria] = useState<number>(2)
+  const handleChangeCriteria = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setCriteria(Number(e.target.value))
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,4 +100,3 @@ const Home: NextPage = () => {
 }
 
 export default Home
-// export default withProtected(Home);
