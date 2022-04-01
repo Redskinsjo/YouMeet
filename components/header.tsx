@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
 
 import { setUsername } from '@/redux/features/userSlice'
+import Logo from '@/public/logo_transparent.png'
 
 interface HeaderComponentProps {
   classes?: string
@@ -40,7 +41,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
       <Link href="/" passHref>
         <div className="flex items-center">
           <Image
-            src="@/public/logo_transparent.png"
+            src={Logo}
             alt="logo"
             height="55px"
             width="150px"

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['cloudflare-ipfs.com'],
+    domains: ['cloudflare-ipfs.com', process.env.API_PROD_URI],
   },
   experimental: {
     images: {
@@ -10,6 +10,8 @@ const nextConfig = {
     },
   },
   env: {
+    API_DEV_URI: process.env.API_DEV_URI,
+    API_PROD_URI: process.env.API_PROD_URI,
     NEXT_PUBLIC_MAPBOX_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
     GMAIL_ADDRESS: process.env.GMAIL_ADDRESS,
     GMAIL_PASSWORD: process.env.GMAIL_PASSWORD,

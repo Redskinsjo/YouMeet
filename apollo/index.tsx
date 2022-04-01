@@ -9,8 +9,8 @@ import {
 const httpLink = new HttpLink({
   uri:
     process.env.NODE_ENV === 'development'
-      ? process.env.API_DEV_URI
-      : process.env.API_PROD_URI,
+      ? process.env.API_DEV_URI + '/api/graphql'
+      : process.env.API_PROD_URI + '/api/graphql',
 })
 
 const client = new ApolloClient({
