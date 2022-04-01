@@ -40,7 +40,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
       <Link href="/" passHref>
         <div className="flex items-center">
           <Image
-            src="/../public/logo_transparent.png"
+            src="@/public/logo_transparent.png"
             alt="logo"
             height="55px"
             width="150px"
