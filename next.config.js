@@ -10,7 +10,6 @@ const nextConfig = {
     },
   },
   env: {
-    API_DEV_URI: process.env.API_DEV_URI,
     API_PROD_URI: process.env.API_PROD_URI,
     NEXT_PUBLIC_MAPBOX_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
     GMAIL_ADDRESS: process.env.GMAIL_ADDRESS,
