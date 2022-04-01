@@ -1,22 +1,25 @@
-import React from "react";
+import React from 'react'
 import {
   ApolloClient,
   ApolloProvider,
   InMemoryCache,
   HttpLink,
-} from "@apollo/client";
+} from '@apollo/client'
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:3000/api/graphql",
-});
+  uri:
+    process.env.NODE_ENV === 'development'
+      ? process.env.API_DEV_URI
+      : process.env.API_PROD_URI,
+})
 
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
-  headers: { "Content-Type": "application/json" },
-  credentials: "omit",
-});
+  headers: { 'Content-Type': 'application/json' },
+  credentials: 'omit',
+})
 
 export default function GraphQLProvider({ children }: any) {
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+  return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
