@@ -5,8 +5,6 @@ import { SessionProvider } from 'next-auth/react'
 
 import GraphQLProvider from '../apollo'
 import { store } from '@/redux/store'
-import RouteGuard from '@/components/route-guard'
-import { RootState } from '@/redux/store'
 import ErrorBoundary from '@/components/error-boundaries'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
