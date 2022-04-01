@@ -9,7 +9,7 @@ import {
 const httpLink = new HttpLink({
   uri:
     process.env.NODE_ENV === 'development'
-      ? process.env.API_DEV_URI + '/api/graphql'
+      ? 'http://localhost:3000/api/graphql'
       : process.env.API_PROD_URI + '/api/graphql',
 })
 
