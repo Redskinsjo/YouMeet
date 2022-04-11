@@ -60,6 +60,7 @@ export default function LoginForm({ providers }: LoginFormProps) {
                 })}
                 className="bg-slate-200 text-black hover:text-white"
                 startIcon={oauthIcon(provider.id)}
+                data-test="signin"
               >
                 Sign in with {provider.name}
               </Button>

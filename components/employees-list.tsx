@@ -15,7 +15,7 @@ const EmployeesList = ({ data }: EmployeesListProps) => {
   return (
     <div className="mt-8 w-full grid grid-cols-5 justify-items-center gap-y-8">
       {data.employees.map((emp: any) => (
-        <div key={emp._id} className="group">
+        <div key={emp._id} className="group" data-test="card">
           <div className="h-[400px] w-[300px] p-4 shadow-lg text-center bg-transparent transition-transform duration-700 perspective-1000 group-hover:rotate-y-180">
             <div className="relative w-full h-full text-center tranform-style-preserve3d backface-hidden">
               <div className="absolute h-full w-full backface-hidden group-hover:rotate-y-180">
@@ -27,7 +27,7 @@ const EmployeesList = ({ data }: EmployeesListProps) => {
                   height={200}
                 />
                 <div className="px-2 mt-8 flex flex-col justify-around items-center">
-                  <p className="text-xs">
+                  <p className="text-xs" data-test="since">
                     Since:{' '}
                     <span className="font-bold">
                       {moment(
@@ -37,7 +37,7 @@ const EmployeesList = ({ data }: EmployeesListProps) => {
                     </span>
                   </p>
                   <p className="h-2" />
-                  <p className="text-xs">
+                  <p className="text-xs" data-test="email">
                     Email: <span className="font-bold">{emp.email}</span>
                   </p>
                   <div
@@ -46,7 +46,10 @@ const EmployeesList = ({ data }: EmployeesListProps) => {
                   />
                 </div>
               </div>
-              <div className="absolute h-full w-full rotate-y-180 invisible group-hover:visible flex flex-col">
+              <div
+                className="absolute h-full w-full rotate-y-180 invisible group-hover:visible flex flex-col"
+                data-test="card-back"
+              >
                 <h1 className="font-bold text-xl mt-8">
                   {emp.firstname + ' ' + emp.lastname}
                 </h1>
@@ -54,7 +57,7 @@ const EmployeesList = ({ data }: EmployeesListProps) => {
                 <p className="mt-8 text-xs px-10 text-justify">
                   {emp.description}
                 </p>
-                <p className="mt-8 text-xs px-10 flex-1">
+                <p className="mt-8 text-xs px-10 flex-1" data-test="from">
                   From: <span className="ml-2 font-bold">{emp.from}</span>
                 </p>
                 <EmailIcon

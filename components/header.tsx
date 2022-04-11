@@ -37,6 +37,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
   return (
     <div
       className={`flex justify-between items-center py-4 px-8 shadow-lg h-16 bg-slate-50 ${classes} fixed w-full z-10 top-0`}
+      data-test="header"
     >
       <Link href="/" passHref>
         <div className="flex items-center">
