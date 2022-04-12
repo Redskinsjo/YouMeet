@@ -4,7 +4,7 @@ https://youmeet-project.herokuapp.com/
 
 ## Getting Started
 
-Need [node](https://nodejs.org/fr/) installed
+Need [node](https://nodejs.org/fr/) installed and yarn: ```npm i -g yarn```
 
 Clone the repo with:
 ```git clone https://github.com/Redskinsjo/YouMeet.git```
