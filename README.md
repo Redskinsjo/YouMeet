@@ -5,7 +5,7 @@ https://youmeet-project.herokuapp.com/
 ## Getting Started
 
 Clone the repo with:
-```git clone ```
+```git clone https://github.com/Redskinsjo/YouMeet.git```
 
 Install dependencies with:
 ```yarn install```
