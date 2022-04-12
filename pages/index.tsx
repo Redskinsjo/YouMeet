@@ -3,13 +3,12 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 import { useQuery } from '@apollo/client'
 import { useSession } from 'next-auth/react'
 
-import { RootState } from '@/redux/store'
 import Header from '@/components/header'
 import { GetEmployees } from '@/apollo/queries'
 import MapboxMap from '@/components/mapbox-map'
@@ -22,10 +21,10 @@ import {
 } from '@/redux/features/employeesSlice'
 
 const Home: NextPage = () => {
-  const username = useSelector((state: RootState) => state.user.username)
   const router = useRouter()
   const { data, refetch } = useQuery(GetEmployees, {
     variables: { filter: '', sort: 2 },
+    nextFetchPolicy: 'cache-first',
   })
   const { data: session } = useSession()
   const dispatch = useDispatch()

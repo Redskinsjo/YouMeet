@@ -21,7 +21,21 @@ type Data = {
   description: string
 }
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers })
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  cache: {
+    get(key) {
+      return new Promise((resolve) => resolve(undefined))
+    },
+    set(key, value) {
+      return new Promise((resolve) => resolve(undefined))
+    },
+    delete(key) {
+      return new Promise((resolve) => resolve())
+    },
+  },
+})
 const startServer = apolloServer.start()
 
 export const config = { api: { bodyParser: false } }

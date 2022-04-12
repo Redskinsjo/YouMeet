@@ -79,8 +79,6 @@ const EmailMe: NextPage = () => {
         subject: '',
         text: '',
       })
-
-      console.log(values)
     })
   }
 
@@ -112,9 +110,7 @@ const EmailMe: NextPage = () => {
                   ? () => {
                       router.replace(`/email/${router.query.employeeId}/send`)
                     }
-                  : () => {
-                      console.log(isSendEmail)
-                    }
+                  : () => {}
               }
             >
               <ListItemIcon>

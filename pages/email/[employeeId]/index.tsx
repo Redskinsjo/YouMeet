@@ -58,8 +58,6 @@ const EmailMe = () => {
         text: '',
       })
     }
-    // window.open(`mailto:${"jonthan.carnos@gmail.com"}`);
-    // window.prompt("to:", "Jonathan.carnos@gmail.com");
   }, [data])
 
   const list = () => (

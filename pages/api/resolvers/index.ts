@@ -4,7 +4,12 @@ import Employee from '../models/employees'
 
 const resolvers = {
   Query: {
-    employees: async (parent: any, args: any) => {
+    employees: async (
+      parent: any,
+      args: { filter: string; sort: number },
+      _: any,
+      info: any
+    ) => {
       let regex
       let employees
 
@@ -15,6 +20,10 @@ const resolvers = {
         args.filter ? { fullname: regex } : {}
       ).sort(args.sort === 1 ? 'starting' : args.sort === -1 ? '-starting' : {})
 
+      employees = employees.map((emp) => ({
+        ...emp._doc,
+        timestamp: new Date(),
+      }))
       return employees
     },
     oneEmployee: async (parent: any, args: any) => {

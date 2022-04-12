@@ -16,6 +16,7 @@ export const GetEmployees = gql`
       starting
       job
       description
+      timestamp
     }
   }
 `

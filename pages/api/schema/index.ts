@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-micro'
 
 const typeDefs = gql`
-  type Employee {
+  type Employee @cacheControl(maxAge: 86400) {
     _id: ID
     fullname: String
     firstname: String
@@ -15,6 +15,7 @@ const typeDefs = gql`
     starting: String
     job: String
     description: String
+    timestamp: String
   }
 
   type SendEmailResponse {
@@ -33,6 +34,17 @@ const typeDefs = gql`
       from: String
     ): SendEmailResponse
   }
+
+  enum CacheControlScope {
+    PUBLIC
+    PRIVATE
+  }
+
+  directive @cacheControl(
+    maxAge: Int
+    scope: CacheControlScope
+    inheritMaxAge: Boolean
+  ) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
 `
 
 export default typeDefs
