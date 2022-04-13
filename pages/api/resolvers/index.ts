@@ -26,7 +26,7 @@ const resolvers = {
       }))
       return employees
     },
-    oneEmployee: async (parent: any, args: any) => {
+    oneEmployee: async (parent: any, args: { id: string }) => {
       const employee = await Employee.findById(args.id)
       return employee
     },
