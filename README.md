@@ -17,3 +17,8 @@ Run the environment with:
 
 and the tests with:
 ```yarn run test```
+
+## Next improvements 
+- Make the UI responsive
+- Emailing works but UX is poor
+- Create a user profile
