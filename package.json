@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "build:tailwind": "npx tailwindcss -i ./styles/globals.css -o ./dist/output.css",
     "test": "cypress open -b chrome -p 3005 & cypress run"
   },
   "dependencies": {

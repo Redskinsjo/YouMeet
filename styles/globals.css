@@ -1,13 +1,10 @@
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html,
-  body,
-  #__next {
-    @apply h-full;
-  }
+html,
+body,
+#__next {
+  height: 100%;
 }
 @layer utilities {
   .vh-70px {

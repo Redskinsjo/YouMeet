@@ -26,7 +26,7 @@ const nodeEl: { [key: string]: React.FC } = {
 
 export default function LoginForm({ providers }: LoginFormProps) {
   const { control, handleSubmit } = useForm({ defaultValues: { email: '' } })
-
+  console.log(providers)
   const oauthIcon = useCallback((id) => {
     return id !== 'email' ? React.createElement(nodeEl[id], null) : <></>
   }, [])

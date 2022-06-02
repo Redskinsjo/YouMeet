@@ -4,17 +4,29 @@ import {
   ApolloProvider,
   InMemoryCache,
   HttpLink,
+  createHttpLink,
 } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 
-const httpLink = new HttpLink({
+const httpLink = createHttpLink({
   uri:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/api/graphql'
       : process.env.API_PROD_URI + '/api/graphql',
 })
 
+const authLink = setContext((_, { headers }) => {
+  const token = '12'
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? 'Bearer ' + token : '',
+    },
+  }
+})
+
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
   headers: { 'Content-Type': 'application/json' },
   credentials: 'omit',
