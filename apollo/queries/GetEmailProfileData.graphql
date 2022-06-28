@@ -1,0 +1,12 @@
+query GetEmailProfileData($id: ID) {
+  oneEmployee(id: $id) {
+    firstname
+    lastname
+    avatar
+    color
+    from
+    starting
+    job
+    description
+  }
+}

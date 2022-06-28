@@ -1,0 +1,18 @@
+query GetEmployees($filter: String, $sort: Int) {
+  employees(filter: $filter, sort: $sort) {
+    _id
+    fullname
+    firstname
+    lastname
+    email
+    avatar
+    color
+    from
+    lat
+    long
+    starting
+    job
+    description
+    timestamp
+  }
+}

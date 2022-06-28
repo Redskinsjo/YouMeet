@@ -17,6 +17,8 @@ function Login({ providers }: { providers: Providers }) {
     }
   }, [session])
 
+  console.log(session)
+
   return !session ? (
     <div className="h-full">
       <Head>

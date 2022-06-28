@@ -1,16 +1,15 @@
-import NextAuth from "next-auth";
+import NextAuth from 'next-auth'
 
-declare module "next-auth" {
-    interface Provider {
-        callbackUrl: string
-        id: "google" | "email" | "facebook"
-        name: "Google" | "Email" | "Facebook"
-        signinUrl: string
-        type: "oauth"
-    }
-    type Providers = {
-        email: Provider
-        facebook: Provider
-        google: Provider
-    }
+declare module 'next-auth' {
+  interface Provider {
+    callbackUrl: string
+    id: 'google' | 'email'
+    name: 'Google' | 'Email'
+    signinUrl: string
+    type: 'oauth'
+  }
+  type Providers = {
+    email: Provider
+    google: Provider
+  }
 }

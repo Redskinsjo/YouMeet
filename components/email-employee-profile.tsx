@@ -9,11 +9,13 @@ import MapboxMap from '@/components/mapbox-map'
 import countries from '@/countriesLatLong.json'
 import { formatDate } from '@/utils/formats'
 
+import { GetEmailProfileDataDocument } from '@/generated'
+
 export default function EmailEmployeeProfile() {
   const router = useRouter()
-  const { data } = useQuery(GetEmailProfileData, {
+  const { data } = useQuery(GetEmailProfileDataDocument, {
     variables: {
-      id: router.query.employeeId,
+      id: router.query.employeeId as string,
     },
   })
   const [latLong, setLatLong] = useState<number[] | []>([])
@@ -57,7 +59,7 @@ export default function EmailEmployeeProfile() {
           </div>
           <div className="mr-8 mt-8">
             <Image
-              src={data.oneEmployee?.avatar}
+              src={data.oneEmployee.avatar}
               alt={
                 data.oneEmployee?.firstname + ' ' + data.oneEmployee?.lastname
               }

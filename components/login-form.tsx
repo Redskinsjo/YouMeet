@@ -27,6 +27,7 @@ const nodeEl: { [key: string]: React.FC } = {
 export default function LoginForm({ providers }: LoginFormProps) {
   const { control, handleSubmit } = useForm({ defaultValues: { email: '' } })
   console.log(providers)
+  console.log(process.env.NODE_ENV)
   const oauthIcon = useCallback((id) => {
     return id !== 'email' ? React.createElement(nodeEl[id], null) : <></>
   }, [])
@@ -53,9 +54,20 @@ export default function LoginForm({ providers }: LoginFormProps) {
                 variant="contained"
                 onClick={handleSubmit((data) => {
                   if (provider.id === 'email') {
-                    signIn(provider.id, { email: data.email })
+                    signIn(provider.id, {
+                      email: data.email,
+                      callbackUrl:
+                        process.env.NODE_ENV === 'development'
+                          ? 'http://localhost:3000'
+                          : process.env.API_PROD_URI,
+                    })
                   } else {
-                    signIn(provider.id)
+                    signIn(provider.id, {
+                      callbackUrl:
+                        process.env.NODE_ENV === 'development'
+                          ? 'http://localhost:3000'
+                          : process.env.API_PROD_URI,
+                    })
                   }
                 })}
                 className="bg-slate-200 text-black hover:text-white"

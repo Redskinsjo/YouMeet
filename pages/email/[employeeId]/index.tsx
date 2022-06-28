@@ -18,14 +18,15 @@ import {
   ListItemText,
   Divider,
 } from '@mui/material'
-import { GetSendEmailData } from '@/apollo/queries'
 import EmailForm, { FormInputs } from '@/components/email-form'
+
+import { GetSendEmailDataDocument } from '@/generated'
 
 const EmailMe = () => {
   const router = useRouter()
-  const { data } = useQuery(GetSendEmailData, {
+  const { data } = useQuery(GetSendEmailDataDocument, {
     variables: {
-      id: router.query.employeeId,
+      id: router.query.employeeId as string | undefined,
     },
   })
   const [open, setOpen] = useState(false)

@@ -1,0 +1,10 @@
+mutation SendEmail(
+  $to: String
+  $subject: String
+  $text: String
+  $from: String
+) {
+  sendEmail(to: $to, subject: $subject, text: $text, from: $from) {
+    hello
+  }
+}

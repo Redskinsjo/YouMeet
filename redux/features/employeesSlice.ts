@@ -1,23 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface Employee {
-  _id: string
-  fullname: string
-  firstname: string
-  lastname: string
-  email: string
-  avatar: string
-  color: string
-  from: string
-  lat: number
-  long: number
-  starting: string
-  job: string
-  description: string
-}
+import { Employee } from '../../generated'
+
+// interface Employee {
+//   _id: string
+//   fullname: string
+//   firstname: string
+//   lastname: string
+//   email: string
+//   avatar: string
+//   color: string
+//   from: string
+//   lat: number
+//   long: number
+//   starting: string
+//   job: string
+//   description: string
+// }
 
 export interface AppState {
-  employees: Array<Employee>
+  employees: Employee[] | undefined | null
   loading: boolean
 }
 
@@ -33,7 +35,10 @@ export const employeesSlice = createSlice({
     fetchingEmployees: (state) => {
       state.loading = true
     },
-    setEmployees: (state, action: PayloadAction<Employee[]>) => {
+    setEmployees: (
+      state,
+      action: PayloadAction<Employee[] | undefined | null>
+    ) => {
       state.employees = action.payload
       state.loading = false
     },

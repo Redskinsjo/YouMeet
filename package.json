@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"graphql-codegen --config codegen.yml --watch \"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:tailwind": "npx tailwindcss -i ./styles/globals.css -o ./dist/output.css",
     "test": "cypress open -b chrome -p 3005 & cypress run"
   },
   "dependencies": {
@@ -30,7 +29,7 @@
     "mongodb": "^4.4.1",
     "mongoose": "^6.2.6",
     "next": "^12.1.1",
-    "next-auth": "^4.2.1",
+    "next-auth": "^4.3.4",
     "next-transpile-modules": "^9.0.0",
     "nodemailer": "^6.7.2",
     "postcss": "^8.4.7",
@@ -44,16 +43,26 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.7",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/introspection": "2.1.1",
+    "@graphql-codegen/typed-document-node": "^2.2.13",
+    "@graphql-codegen/typescript": "2.5.1",
+    "@graphql-codegen/typescript-operations": "2.4.2",
+    "@graphql-codegen/typescript-react-apollo": "3.2.16",
+    "@graphql-codegen/typescript-resolvers": "2.6.6",
     "@types/mapbox-gl": "^2.6.3",
     "@types/node": "17.0.21",
     "@types/nodemailer": "^6.4.4",
     "@types/react": "17.0.39",
+    "add": "^2.0.6",
+    "concurrently": "^7.2.2",
     "cypress": "^9.5.4",
     "cypress-real-events": "^1.7.0",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "prettier": "2.5.1",
-    "typescript": "4.6.2"
+    "typescript": "4.6.2",
+    "yarn": "^1.22.19"
   },
   "engines": {
     "node": "*"

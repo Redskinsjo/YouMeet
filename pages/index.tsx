@@ -2,15 +2,14 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners'
 import { useQuery } from '@apollo/client'
+import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
 import Header from '@/components/header'
-import { GetEmployees } from '@/apollo/queries'
 import MapboxMap from '@/components/mapbox-map'
 import EmployeesList from '@/components/employees-list'
 import Footer from '@/components/footer'
@@ -19,10 +18,11 @@ import {
   setEmployees,
   fetchingEmployees,
 } from '@/redux/features/employeesSlice'
+import { GetEmployeesDocument } from '../generated'
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const { data, refetch } = useQuery(GetEmployees, {
+  const { data, refetch } = useQuery(GetEmployeesDocument, {
     variables: { filter: '', sort: 2 },
     nextFetchPolicy: 'cache-first',
   })

@@ -6,8 +6,8 @@ const typeDefs = gql`
     fullname: String
     firstname: String
     lastname: String
-    email: String
-    avatar: String
+    email: String!
+    avatar: String!
     color: String
     from: String
     lat: Float
@@ -23,8 +23,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    employees(filter: String, sort: Int): [Employee]
-    oneEmployee(id: ID): Employee
+    employees(filter: String, sort: Int): [Employee!]
+    oneEmployee(id: ID): Employee!
   }
   type Mutation {
     sendEmail(

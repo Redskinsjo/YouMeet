@@ -21,15 +21,15 @@ import {
   ListItemText,
   Divider,
 } from '@mui/material'
-import { GetSendEmailData } from '@/apollo/queries'
 import EmailForm, { FormInputs } from '@/components/email-form'
 import EmailEmployeeProfile from '@/components/email-employee-profile'
+import { GetSendEmailDataDocument } from '@/generated'
 
 const EmailMe: NextPage = () => {
   const router = useRouter()
-  const { data: employee } = useQuery(GetSendEmailData, {
+  const { data: employee } = useQuery(GetSendEmailDataDocument, {
     variables: {
-      id: router.query.employeeId,
+      id: router.query.employeeId as string,
     },
   })
   const [open, setOpen] = useState(false)
@@ -58,9 +58,9 @@ const EmailMe: NextPage = () => {
         const templateParams = {
           to_name: session?.user?.name,
           original_recipient:
-            employee.oneEmployee.firstname +
+            employee?.oneEmployee.firstname +
             ' ' +
-            employee.oneEmployee.lastname,
+            employee?.oneEmployee.lastname,
           subject: data.subject,
           text: data.text,
           to: recipient,

@@ -1,15 +1,11 @@
 import nodemailer from 'nodemailer'
 
 import Employee from '../models/employees'
+import { Resolvers } from '../../../generated'
 
-const resolvers = {
+const resolvers: Resolvers = {
   Query: {
-    employees: async (
-      parent: any,
-      args: { filter: string; sort: number },
-      _: any,
-      info: any
-    ) => {
+    employees: async (parent, args, _, info) => {
       let regex
       let employees
 
@@ -26,7 +22,7 @@ const resolvers = {
       }))
       return employees
     },
-    oneEmployee: async (parent: any, args: { id: string }) => {
+    oneEmployee: async (parent, args) => {
       const employee = await Employee.findById(args.id)
       return employee
     },
