@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model accounts {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  access_token      String
+  expires_at        Int
+  id_token          String
+  provider          String
+  providerAccountId String
+  scope             String
+  token_type        String
+  type              String
+  userId            String @db.ObjectId
+}
+
+model employees {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  v           Int      @map("__v")
+  avatar      String
+  color       String
+  description String
+  email       String
+  firstname   String
+  from        String
+  fullname    String
+  job         String
+  lastname    String
+  lat         String
+  long        String
+  starting    DateTime @db.Date
+}
+
+model sessions {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  expires      DateTime @db.Date
+  sessionToken String
+  userId       String   @db.ObjectId
+}
+
+model users {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  email         String
+  emailVerified DateTime? @db.Date
+  id_           String?   @map("id")
+  image         String
+  name          String
+}
+
+model verification_tokens {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  expires    DateTime @db.Date
+  identifier String?
+  token      String
+}

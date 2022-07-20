@@ -26,7 +26,7 @@ function MapboxMap({
   // Add the markers to the map and store the map
   const getNewMap = (map: any) => {
     employees.forEach((emp: any) => {
-      new mapboxgl.Marker({ color: emp.color })
+      new mapboxgl.Marker({ color: emp.color, scale: 0.6 })
         .setLngLat([emp.long, emp.lat])
         .addTo(map)
     })

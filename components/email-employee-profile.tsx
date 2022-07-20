@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import moment from 'moment'
 
-import { GetEmailProfileData } from '@/apollo/queries'
 import MapboxMap from '@/components/mapbox-map'
 import countries from '@/countriesLatLong.json'
 import { formatDate } from '@/utils/formats'

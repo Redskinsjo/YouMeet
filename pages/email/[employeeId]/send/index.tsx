@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import React from 'react'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { AiOutlineMail } from 'react-icons/ai'
@@ -7,9 +8,10 @@ import { BiArrowToRight } from 'react-icons/bi'
 import { TiArrowBack } from 'react-icons/ti'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/react'
+// import { useSession } from 'next-auth/react'
 import { ClipLoader } from 'react-spinners'
 import emailjs from '@emailjs/browser'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import Header from '@/components/header'
 import {
@@ -33,13 +35,16 @@ const EmailMe: NextPage = () => {
     },
   })
   const [open, setOpen] = useState(false)
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
+  const { user, isAuthenticated } = useAuth0()
 
-  useEffect(() => {
-    if (!session) {
-      router.push('/login')
-    }
-  }, [session])
+  // useEffect(() => {
+  //   if (!session) {
+  //     router.push('/login')
+  //   }
+  // }, [session])
+
+  console.log(user)
 
   const toggleDrawer = (action: any) => setOpen(action)
   const { control, reset, handleSubmit } = useForm<FormInputs>({
@@ -56,7 +61,7 @@ const EmailMe: NextPage = () => {
     Promise.all(
       recipients.map((recipient: any) => {
         const templateParams = {
-          to_name: session?.user?.name,
+          to_name: user?.name,
           original_recipient:
             employee?.oneEmployee.firstname +
             ' ' +
@@ -75,7 +80,7 @@ const EmailMe: NextPage = () => {
       })
     ).then((values) => {
       reset({
-        to: `${session?.user?.email},Jonathan.carnos@gmail.com`,
+        to: `${user?.email},Jonathan.carnos@gmail.com`,
         subject: '',
         text: '',
       })
@@ -85,7 +90,7 @@ const EmailMe: NextPage = () => {
   useEffect(() => {
     if (employee) {
       reset({
-        to: `${session?.user?.email},Jonathan.carnos@gmail.com`,
+        to: `${user?.email},Jonathan.carnos@gmail.com`,
         subject: '',
         text: '',
       })
@@ -110,7 +115,8 @@ const EmailMe: NextPage = () => {
                   ? () => {
                       router.replace(`/email/${router.query.employeeId}/send`)
                     }
-                  : () => {}
+                  : // eslint-disable-next-line @typescript-eslint/no-empty-function
+                    () => {}
               }
             >
               <ListItemIcon>
@@ -145,7 +151,9 @@ const EmailMe: NextPage = () => {
     </div>
   )
 
-  return session ? (
+  console.log(employee)
+
+  return isAuthenticated ? (
     <div className="h-full w-full flex flex-col">
       <Header />
       <Drawer anchor="left" open={open} onClose={() => toggleDrawer(false)}>

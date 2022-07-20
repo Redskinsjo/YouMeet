@@ -1,6 +1,6 @@
 query GetSendEmailData($id: ID) {
   oneEmployee(id: $id) {
-    _id
+    id
     firstname
     lastname
     email

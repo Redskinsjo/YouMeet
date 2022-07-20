@@ -1,75 +1,66 @@
-import Image from 'next/image'
-import moment from 'moment'
-import { useRouter } from 'next/router'
+import React, { useState, useEffect } from 'react'
+import { AiOutlinePlus } from 'react-icons/ai'
 
-import EmailIcon from '@/components/email-icon'
-import { formatDate } from '@/utils/formats'
+import BackCard from './back-card'
+import FrontCard from './front-card'
+import { GetEmployeesQuery, Employee } from '@/generated'
 
 interface EmployeesListProps {
-  data: any
+  data: GetEmployeesQuery | undefined
 }
 
 const EmployeesList = ({ data }: EmployeesListProps) => {
-  const router = useRouter()
+  const [lockedCards, setLockedCards] = useState<string[]>([])
+  const [displayedCards, setDisplayedCards] = useState<Employee[] | undefined>(
+    []
+  )
+  const [offset, setOffset] = useState(0)
+
+  useEffect(() => {
+    const cards = data?.employees?.slice(offset * 5, (offset + 1) * 5)
+    setDisplayedCards(cards)
+  }, [offset, data])
 
   return (
-    <div className="mt-8 w-full grid grid-cols-5 justify-items-center gap-y-8">
-      {data.employees.map((emp: any) => (
-        <div key={emp._id} className="group" data-test="card">
-          <div className="h-[400px] w-[300px] p-4 shadow-lg text-center bg-transparent transition-transform duration-700 perspective-1000 group-hover:rotate-y-180">
-            <div className="relative w-full h-full text-center tranform-style-preserve3d backface-hidden">
-              <div className="absolute h-full w-full backface-hidden group-hover:rotate-y-180">
-                <Image
-                  alt={emp.firstname + emp.lastname}
-                  className="backface-hidden rounded-full"
-                  src={emp.avatar}
-                  width={200}
-                  height={200}
-                />
-                <div className="px-2 mt-8 flex flex-col justify-around items-center">
-                  <p className="text-xs" data-test="since">
-                    Since:{' '}
-                    <span className="font-bold">
-                      {moment(
-                        formatDate(Number(emp.starting)),
-                        'YYYYMMDD'
-                      ).fromNow()}
-                    </span>
-                  </p>
-                  <p className="h-2" />
-                  <p className="text-xs" data-test="email">
-                    Email: <span className="font-bold">{emp.email}</span>
-                  </p>
-                  <div
-                    className="h-8 w-8 mt-4 border-2 border-slate-300"
-                    style={{ background: emp.color }}
-                  />
-                </div>
-              </div>
-              <div
-                className="absolute h-full w-full rotate-y-180 invisible group-hover:visible flex flex-col"
-                data-test="card-back"
-              >
-                <h1 className="font-bold text-xl mt-8">
-                  {emp.firstname + ' ' + emp.lastname}
-                </h1>
-                <p className="font-medium text-base">{emp.job}</p>
-                <p className="mt-8 text-xs px-10 text-justify">
-                  {emp.description}
-                </p>
-                <p className="mt-8 text-xs px-10 flex-1" data-test="from">
-                  From: <span className="ml-2 font-bold">{emp.from}</span>
-                </p>
-                <EmailIcon
-                  onClick={() => {
-                    router.push(`./email/${emp._id}/send`)
-                  }}
+    <div className="mt-8 flex flex-col items-center">
+      <div className="flex justify-start items-center w-[90%]">
+        <h2>Suggested Employees</h2>
+        <AiOutlinePlus
+          className="text-[38px] cursor-pointer hover:bg-[#2d1783] hover:text-white rounded mx-4"
+          onClick={() => {
+            if (
+              data?.employees &&
+              5 + offset * 5 + 5 <= data?.employees?.length
+            )
+              setOffset(offset + 1)
+            else setOffset(0)
+          }}
+        />
+      </div>
+      <div className="w-full flex flex-wrap justify-center">
+        {displayedCards?.map((emp: any) => (
+          <div
+            key={emp.id}
+            className="group min-w-[220px] appear-fastly"
+            data-test="card"
+          >
+            <div
+              className={`absolute w-0 h-0 border-r-[20px] border-solid border-t-[20px] border-b-[20px] border-l-0 border-t-transparent border-b-transparent rotate-90-deg`}
+              style={{ borderRightColor: emp.color }}
+            />
+            <div className="h-[400px] w-[300px] p-4 shadow-lg text-center bg-transparent transition-transform duration-300 perspective-1000 ">
+              <div className="relative w-full h-full text-center tranform-style-preserve3d backface-hidden">
+                <FrontCard emp={emp} lockedCards={lockedCards} />
+                <BackCard
+                  emp={emp}
+                  lockedCards={lockedCards}
+                  setLockedCards={setLockedCards}
                 />
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

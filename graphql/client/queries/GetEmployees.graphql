@@ -1,6 +1,6 @@
 query GetEmployees($filter: String, $sort: Int) {
   employees(filter: $filter, sort: $sort) {
-    _id
+    id
     fullname
     firstname
     lastname
@@ -13,6 +13,5 @@ query GetEmployees($filter: String, $sort: Int) {
     starting
     job
     description
-    timestamp
   }
 }

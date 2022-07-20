@@ -4,39 +4,54 @@ import { useSelector, useDispatch } from 'react-redux'
 import Image from 'next/image'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/react'
+import { MdDashboard } from 'react-icons/md'
+import { BsPersonCircle } from 'react-icons/bs'
+import { BiLogInCircle } from 'react-icons/bi'
+import { useTranslation } from 'react-i18next'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import { setUsername } from '@/redux/features/userSlice'
 import Logo from '@/public/logo_transparent.png'
+import LocaleChoice from '@/components/locale'
 
 interface HeaderComponentProps {
   classes?: string
 }
 
 export default function HeaderComponent({ classes }: HeaderComponentProps) {
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
+  const [anchorEl, setAnchorEl] = React.useState<
+    | undefined
+    | {
+        el: EventTarget
+        type: string
+      }
+  >(undefined)
+  const open = anchorEl
   const dispatch = useDispatch()
   const router = useRouter()
   const { data: session } = useSession()
+  const { t, i18n } = useTranslation()
+  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0()
 
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget)
+  const handleClick = (event: any, type: 'logout' | 'lang') => {
+    setAnchorEl({ el: event.currentTarget, type })
   }
   const handleClose = () => {
-    setAnchorEl(null)
+    setAnchorEl(undefined)
   }
-  const logout = () => {
-    signOut()
-    dispatch(setUsername(''))
-    router.replace('/login')
-  }
+  // const logout = () => {
+  //   signOut()
+  //   dispatch(setUsername(''))
+  //   router.replace('/login')
+  // }
 
   return (
     <div
-      className={`flex justify-between items-center py-4 px-8 shadow-lg h-16 bg-slate-50 ${classes} fixed w-full z-10 top-0`}
+      className={`flex justify-between items-center py-4 px-4 shadow-lg h-16 bg-slate-50 ${classes} fixed w-full box-border z-10 top-0`}
       data-test="header"
     >
       <Link href="/" passHref>
@@ -50,20 +65,26 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
           />
         </div>
       </Link>
-      {session && (
+      {isAuthenticated ? (
         <div>
           <div
-            className="flex items-center p-2"
-            onClick={handleClick}
-            onMouseEnter={handleClick}
+            className={
+              open
+                ? 'flex items-center p-2 bg-blue-50 rounded cursor-pointer'
+                : 'flex items-center p-2'
+            }
+            onClick={(e) => handleClick(e, 'logout')}
+            onMouseEnter={(e) => {
+              handleClick(e, 'logout')
+            }}
           >
             <BsFillPersonFill style={{ fontSize: 28, marginRight: 15 }} />
-            <div>{session?.user?.name}</div>
+            <div>{user?.name}</div>
           </div>
           <Menu
             id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
+            anchorEl={anchorEl && (anchorEl.el as Element)}
+            open={open !== undefined && open.type === 'logout'}
             onClose={handleClose}
             MenuListProps={{
               'aria-labelledby': 'basic-button',
@@ -71,8 +92,25 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={logout}>Logout</MenuItem>
+            <MenuItem onClick={() => logout()}>Logout</MenuItem>
           </Menu>
+        </div>
+      ) : (
+        <div className="flex border-box h-full">
+          <LocaleChoice />
+          <Button
+            className="flex items-center text-white bg-[#574499] capitalize"
+            endIcon={<BiLogInCircle className="icon" />}
+            sx={{
+              ':hover': {
+                backgroundColor: '#D6D2E6',
+                color: '#2D1783',
+              },
+            }}
+            onClick={() => loginWithRedirect()}
+          >
+            {t('login')}
+          </Button>
         </div>
       )}
     </div>

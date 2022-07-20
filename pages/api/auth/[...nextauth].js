@@ -39,14 +39,18 @@ export default NextAuth({
     // async signIn(user, account, profile) {
     //   console.log('user1', user, 'account1', account, 'profile', profile)
     // },
-    // async redirect({ url, baseUrl }) {
-    //   console.log('url1', url, 'baseUrl1', baseUrl)
-    // Allows relative callback URLs
-    // if (url.startsWith('/')) return `${baseUrl}${url}`
-    // Allows callback URLs on the same origin
-    // else if (new URL(url).origin === baseUrl) return url
-    // return baseUrl
-    // return url
-    // },
+    async redirect({ url, baseUrl }) {
+      console.log('url1', url, 'baseUrl1', baseUrl)
+
+      if (process.env.NODE_ENV === 'development') return url
+      return baseUrl
+
+      // Allows relative callback URLs
+      if (url.startsWith('/')) return `${baseUrl}${url}`
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
+      return url
+    },
   },
 })

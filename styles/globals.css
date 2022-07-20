@@ -1,25 +1,63 @@
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&family=Arvo&display=swap');
 
 html,
 body,
 #__next {
   height: 100%;
+  margin: 0;
+  font-family: 'Alegreya Sans', sans-serif;
+  /* overflow-y: hidden; */
 }
+
+@keyframes appear_fastly {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes appear_slowly {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @layer utilities {
   .vh-70px {
     height: calc(100vh - 70px);
   }
   .rotate-y-180 {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(20px);
+  }
+  .appear-slowly {
+    animation: appear_slowly 0.5s ease-in;
+  }
+  .appear-fastly {
+    animation: appear_fastly 0.1s ease-in;
   }
   .perspective-1000 {
     perspective: 1000px;
   }
   .tranform-style-preserve3d {
     transform-style: preserve-3d;
+    perspective-origin: 150% 150%;
   }
   .backface-hidden {
     backface-visibility: hidden;
+  }
+  .rotate-90-deg {
+    transform: rotate(45deg);
   }
 }

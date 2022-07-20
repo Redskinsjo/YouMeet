@@ -1,5 +1,8 @@
+const { i18n } = require('./next-i18next.config')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  i18n,
   reactStrictMode: false,
   images: {
     domains: ['cloudflare-ipfs.com', process.env.API_PROD_URI],

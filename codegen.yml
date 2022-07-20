@@ -1,6 +1,6 @@
 overwrite: true
-schema: './pages/api/schema'
-documents: './apollo/**/*.graphql'
+schema: './graphql/schema/schema'
+documents: './graphql/**/*.graphql'
 generates:
   ./generated.ts:
     plugins:

@@ -2,20 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     },
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "cypress",
-      "cypress-real-events"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["cypress", "cypress-real-events"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -34,9 +25,9 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/api/lib/mongodb.js",
-    "pages/api/auth/[...nextauth].js"
+    "pages/api/auth/[...nextauth].js",
+    "locales/index.js",
+    "prisma/index.js"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
