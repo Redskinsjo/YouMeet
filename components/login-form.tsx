@@ -1,18 +1,11 @@
 import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button } from '@mui/material'
-import Link from 'next/link'
-import { signIn } from 'next-auth/react'
 import { MdFacebook } from 'react-icons/md'
 import { AiFillGoogleCircle } from 'react-icons/ai'
-import { Providers } from 'next-auth'
-import { useAuth0 } from '@auth0/auth0-react'
 
 import Field from './field'
-
-interface LoginFormProps {
-  providers: Providers
-}
+import { LoginFormProps } from '@/types/LoginFormProps'
 
 const styles = {
   padding: '8px 0px',
@@ -26,22 +19,18 @@ const nodeEl: { [key: string]: React.FC } = {
 }
 
 export default function LoginForm({ providers }: LoginFormProps) {
-  const { control, handleSubmit } = useForm({ defaultValues: { email: '' } })
-  // const { loginWithRedirect } = useAuth0()
+  const { control } = useForm({ defaultValues: { email: '' } })
 
-  // console.log(providers)
-  console.log(process.env.NODE_ENV)
   providers = { google: providers.google, email: providers.email }
-  console.log(providers)
 
   const oauthIcon = useCallback((id) => {
     return id !== 'email' ? React.createElement(nodeEl[id], null) : <></>
   }, [])
 
   return (
-    <div className="shadow-xl hover:shadow-2xl flex flex-col py-8 px-14 bg-slate-50">
+    <div className='shadow-xl hover:shadow-2xl flex flex-col py-8 px-14 bg-slate-50'>
       <h1
-        className="text-3xl font-bold mb-6"
+        className='text-3xl font-bold mb-6'
         style={{ marginBottom: styles.marginBottom }}
       >
         Connect yourself
@@ -49,15 +38,15 @@ export default function LoginForm({ providers }: LoginFormProps) {
       <>
         {Object.values(providers).map((provider: any) => {
           return (
-            <div key={provider.name} className="mt-4">
+            <div key={provider.name} className='mt-4'>
               {provider.id === 'email' && (
                 <div>
-                  <hr className="my-4" />
-                  <Field control={control} name="email" sx={styles} />
+                  <hr className='my-4' />
+                  <Field control={control} name='email' sx={styles} />
                 </div>
               )}
               <Button
-                variant="contained"
+                variant='contained'
                 // onClick={() => loginWithRedirect()}
                 // onClick={handleSubmit((data) => {
                 //   if (provider.id === 'email') {
@@ -77,9 +66,9 @@ export default function LoginForm({ providers }: LoginFormProps) {
                 //     })
                 //   }
                 // })}
-                className="bg-slate-200 text-black hover:text-white"
+                className='bg-slate-200 text-black hover:text-white'
                 startIcon={oauthIcon(provider.id)}
-                data-test="signin"
+                data-test='signin'
               >
                 Sign in with {provider.name}
               </Button>

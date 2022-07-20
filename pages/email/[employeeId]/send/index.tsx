@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import React from 'react'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { AiOutlineMail } from 'react-icons/ai'
@@ -8,7 +7,6 @@ import { BiArrowToRight } from 'react-icons/bi'
 import { TiArrowBack } from 'react-icons/ti'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQuery } from '@apollo/client'
-// import { useSession } from 'next-auth/react'
 import { ClipLoader } from 'react-spinners'
 import emailjs from '@emailjs/browser'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -35,18 +33,9 @@ const EmailMe: NextPage = () => {
     },
   })
   const [open, setOpen] = useState(false)
-  // const { data: session } = useSession()
   const { user, isAuthenticated } = useAuth0()
 
-  // useEffect(() => {
-  //   if (!session) {
-  //     router.push('/login')
-  //   }
-  // }, [session])
-
-  console.log(user)
-
-  const toggleDrawer = (action: any) => setOpen(action)
+  const toggleDrawer = (action: boolean) => setOpen(action)
   const { control, reset, handleSubmit } = useForm<FormInputs>({
     defaultValues: {
       to: '',
@@ -55,11 +44,13 @@ const EmailMe: NextPage = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data: any) => {
+  const onSubmit: SubmitHandler<FormInputs> = async (
+    data: FormInputs
+  ): Promise<void> => {
     const recipients = data.to.split(',')
 
     Promise.all(
-      recipients.map((recipient: any) => {
+      recipients.map((recipient: string) => {
         const templateParams = {
           to_name: user?.name,
           original_recipient:
@@ -78,7 +69,7 @@ const EmailMe: NextPage = () => {
           `${process.env.EMAILJS_USERID}`
         )
       })
-    ).then((values) => {
+    ).then(() => {
       reset({
         to: `${user?.email},Jonathan.carnos@gmail.com`,
         subject: '',
@@ -151,8 +142,6 @@ const EmailMe: NextPage = () => {
       </ListItemButton>
     </div>
   )
-
-  console.log(employee)
 
   return isAuthenticated ? (
     <div className="h-full w-full flex flex-col">

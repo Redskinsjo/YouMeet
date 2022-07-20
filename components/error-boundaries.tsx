@@ -1,6 +1,7 @@
 import React from 'react'
 
-class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
+// eslint-disable-next-line @typescript-eslint/ban-types
+class ErrorBoundary extends React.Component<unknown, { hasError: boolean }> {
   constructor(props: any) {
     super(props)
     this.state = { hasError: false }

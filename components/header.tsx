@@ -1,20 +1,14 @@
 import React from 'react'
 import { BsFillPersonFill } from 'react-icons/bs'
-import { useSelector, useDispatch } from 'react-redux'
 import Image from 'next/image'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Button } from '@mui/material'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { signOut, useSession } from 'next-auth/react'
-import { MdDashboard } from 'react-icons/md'
-import { BsPersonCircle } from 'react-icons/bs'
 import { BiLogInCircle } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
 import { useAuth0 } from '@auth0/auth0-react'
 
-import { setUsername } from '@/redux/features/userSlice'
 import Logo from '@/public/logo_transparent.png'
 import LocaleChoice from '@/components/locale'
 
@@ -31,10 +25,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
       }
   >(undefined)
   const open = anchorEl
-  const dispatch = useDispatch()
-  const router = useRouter()
-  const { data: session } = useSession()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0()
 
   const handleClick = (event: any, type: 'logout' | 'lang') => {
@@ -43,25 +34,20 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
   const handleClose = () => {
     setAnchorEl(undefined)
   }
-  // const logout = () => {
-  //   signOut()
-  //   dispatch(setUsername(''))
-  //   router.replace('/login')
-  // }
 
   return (
     <div
       className={`flex justify-between items-center py-4 px-4 shadow-lg h-16 bg-slate-50 ${classes} fixed w-full box-border z-10 top-0`}
-      data-test="header"
+      data-test='header'
     >
-      <Link href="/" passHref>
-        <div className="flex items-center">
+      <Link href='/' passHref>
+        <div className='flex items-center'>
           <Image
             src={Logo}
-            alt="logo"
-            height="55px"
-            width="150px"
-            className="cursor-pointer"
+            alt='logo'
+            height='55px'
+            width='150px'
+            className='cursor-pointer'
           />
         </div>
       </Link>
@@ -82,7 +68,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
             <div>{user?.name}</div>
           </div>
           <Menu
-            id="basic-menu"
+            id='basic-menu'
             anchorEl={anchorEl && (anchorEl.el as Element)}
             open={open !== undefined && open.type === 'logout'}
             onClose={handleClose}
@@ -96,11 +82,11 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
           </Menu>
         </div>
       ) : (
-        <div className="flex border-box h-full">
+        <div className='flex border-box h-full'>
           <LocaleChoice />
           <Button
-            className="flex items-center text-white bg-[#574499] capitalize"
-            endIcon={<BiLogInCircle className="icon" />}
+            className='flex items-center text-white bg-[#574499] capitalize'
+            endIcon={<BiLogInCircle className='icon' />}
             sx={{
               ':hover': {
                 backgroundColor: '#D6D2E6',

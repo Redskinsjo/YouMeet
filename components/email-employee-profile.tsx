@@ -21,9 +21,18 @@ export default function EmailEmployeeProfile() {
 
   useEffect(() => {
     if (data) {
-      const country = countries.ref_country_codes.find((country: any) => {
-        return country.country === data.oneEmployee?.from
-      })
+      const country = countries.ref_country_codes.find(
+        (country: {
+          country: string
+          alpha2: string
+          alpha3: string
+          numeric: number
+          latitude: number
+          longitude: number
+        }) => {
+          return country.country === data.oneEmployee?.from
+        }
+      )
       const coords = []
       if (country) {
         coords.push(country.longitude)
@@ -33,30 +42,30 @@ export default function EmailEmployeeProfile() {
     }
   }, [data])
   return (
-    <div className="w-full flex flex-col items-center mt-16 w-[900px] shadow-xl">
+    <div className='w-full flex flex-col items-center mt-16 w-[900px] shadow-xl'>
       {data && (
-        <div className="w-full flex border-b-2">
-          <div className="flex-1 mx-16 mb-8">
-            <h1 className="text-3xl mt-8 font-bold text-center">
+        <div className='w-full flex border-b-2'>
+          <div className='flex-1 mx-16 mb-8'>
+            <h1 className='text-3xl mt-8 font-bold text-center'>
               {data.oneEmployee?.firstname} {data.oneEmployee?.lastname}
             </h1>
-            <h3 className="text-lg text-center">{data.oneEmployee?.job}</h3>
-            <p className="text-sm mt-4">{data.oneEmployee?.description}</p>
-            <p className="text-sm mt-4">
+            <h3 className='text-lg text-center'>{data.oneEmployee?.job}</h3>
+            <p className='text-sm mt-4'>{data.oneEmployee?.description}</p>
+            <p className='text-sm mt-4'>
               Started work{' '}
-              <span className="font-bold">
+              <span className='font-bold'>
                 {moment(
                   formatDate(Number(data.oneEmployee?.starting)),
                   'YYYYMMDD'
                 ).fromNow()}
               </span>
             </p>
-            <p className="mt-4 text-sm">
+            <p className='mt-4 text-sm'>
               From:{' '}
-              <span className="ml-2 font-bold">{data.oneEmployee?.from}</span>
+              <span className='ml-2 font-bold'>{data.oneEmployee?.from}</span>
             </p>
           </div>
-          <div className="mr-8 mt-8">
+          <div className='mr-8 mt-8'>
             <Image
               src={data.oneEmployee.avatar}
               alt={
@@ -70,7 +79,7 @@ export default function EmailEmployeeProfile() {
       )}
       {data && (
         <div
-          className={`justify-center flex pt-8 w-full h-full`}
+          className='justify-center flex pt-8 w-full h-full'
           style={{
             background: `linear-gradient(#fff, ${data.oneEmployee?.color})`,
           }}

@@ -1,11 +1,7 @@
-import { TextField, InputLabel } from '@mui/material'
+import { TextField } from '@mui/material'
 import { Controller } from 'react-hook-form'
 
-interface EmailFieldProps {
-  control?: any
-  name: any
-  email?: string
-}
+import { EmailFieldProps } from '@/types/EmailFieldProps'
 
 const EmailField = ({ control, name, email }: EmailFieldProps) => {
   return !control ? (
@@ -13,7 +9,7 @@ const EmailField = ({ control, name, email }: EmailFieldProps) => {
       <TextField
         value={email}
         name={name}
-        variant="outlined"
+        variant='outlined'
         label={name[0].toUpperCase() + name.slice(1)}
         multiline={name === 'text' && true}
         fullWidth
@@ -45,7 +41,7 @@ const EmailField = ({ control, name, email }: EmailFieldProps) => {
               onChange={(e) => onChange(e.target.value)}
               value={value}
               name={name}
-              variant="outlined"
+              variant='outlined'
               label={name[0].toUpperCase() + name.slice(1)}
               multiline={name === 'text' && true}
               fullWidth

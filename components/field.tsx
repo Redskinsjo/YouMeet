@@ -1,24 +1,19 @@
-import React, { useCallback } from "react";
-import { TextField } from "@mui/material";
-import { Controller } from "react-hook-form";
+import React, { useCallback } from 'react'
+import { TextField } from '@mui/material'
+import { Controller } from 'react-hook-form'
 
-interface FieldProps {
-  control: any;
-  name: any;
-  sx?: any;
-  classes?: any;
-}
+import { FieldProps } from '@/types/FieldProps'
 
 export default function Field({ control, name, sx, classes }: FieldProps) {
   const formatLabel = useCallback((name) => {
-    if (name.includes("_")) {
+    if (name.includes('_')) {
       return name
-        .split("_")
+        .split('_')
         .map((el: string) => el[0].toUpperCase() + el.slice(1))
-        .join(" ");
+        .join(' ')
     }
-    return name[0].toUpperCase() + name.slice(1);
-  }, []);
+    return name[0].toUpperCase() + name.slice(1)
+  }, [])
   return (
     <Controller
       control={control}
@@ -27,13 +22,13 @@ export default function Field({ control, name, sx, classes }: FieldProps) {
         <TextField
           className={classes}
           label={formatLabel(name)}
-          variant="standard"
+          variant='standard'
           onChange={(e) => onChange(e.target.value)}
           value={value}
           sx={sx}
-          autoComplete="off"
+          autoComplete='off'
         />
       )}
     />
-  );
+  )
 }

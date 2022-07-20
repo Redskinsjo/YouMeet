@@ -13,12 +13,11 @@ import {
   Drawer,
   List,
   ListItemButton,
-  ListItem,
   ListItemIcon,
   ListItemText,
   Divider,
 } from '@mui/material'
-import EmailForm, { FormInputs } from '@/components/email-form'
+import { FormInputs } from '@/types/FormInputs'
 
 import { GetSendEmailDataDocument } from '@/generated'
 
@@ -38,8 +37,8 @@ const EmailMe = () => {
     }
   }, [])
 
-  const toggleDrawer = (action: any) => setOpen(action)
-  const { control, reset, handleSubmit } = useForm<FormInputs>({
+  const toggleDrawer = (action: boolean) => setOpen(action)
+  const { reset } = useForm<FormInputs>({
     defaultValues: {
       to: '',
       subject: '',
@@ -47,7 +46,8 @@ const EmailMe = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormInputs> = (data: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onSubmit: SubmitHandler<FormInputs> = (data: FormInputs): void => {
     console.log(data)
   }
 
@@ -64,7 +64,7 @@ const EmailMe = () => {
   const list = () => (
     <div
       style={{ width: 250 }}
-      role="presentation"
+      role='presentation'
       onClick={() => toggleDrawer(false)}
     >
       <List>
@@ -77,7 +77,7 @@ const EmailMe = () => {
               onClick={
                 isSendEmail
                   ? () => router.push(`/email/${router.query.employeeId}/send`)
-                  : () => {}
+                  : () => ({})
               }
             >
               <ListItemIcon>
@@ -113,18 +113,18 @@ const EmailMe = () => {
   )
 
   return (
-    <div className="h-full w-full flex flex-col">
+    <div className='h-full w-full flex flex-col'>
       <Header />
-      <Drawer anchor="left" open={open} onClose={() => toggleDrawer(false)}>
+      <Drawer anchor='left' open={open} onClose={() => toggleDrawer(false)}>
         {list()}
       </Drawer>
-      <div className="flex flex-1">
+      <div className='flex flex-1'>
         {!open && (
           <div
-            className="relative left-0 h-full w-16 mt-16 bg-slate-50 hover:bg-slate-100 flex justify-center items-center cursor-pointer"
+            className='relative left-0 h-full w-16 mt-16 bg-slate-50 hover:bg-slate-100 flex justify-center items-center cursor-pointer'
             onClick={() => toggleDrawer(true)}
           >
-            <BiArrowToRight fontSize="24px" />
+            <BiArrowToRight fontSize='24px' />
           </div>
         )}
       </div>
