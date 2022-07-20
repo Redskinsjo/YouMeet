@@ -84,6 +84,7 @@ const EmailMe: NextPage = () => {
         subject: '',
         text: '',
       })
+      router.push('/')
     })
   }
 
