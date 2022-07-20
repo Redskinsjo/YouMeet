@@ -11,7 +11,7 @@ interface SearchProps {
 }
 
 const criterias = [
-  { value: 2, label: 'Choose' },
+  { value: 2, label: 'Default' },
   { value: -1, label: 'Asc' },
   { value: 1, label: 'Desc' },
 ]
@@ -23,12 +23,12 @@ export default function Search({
   handleChangeCriteria,
 }: SearchProps) {
   return (
-    <div className="flex h-12">
+    <div className='flex h-12'>
       <Input
         value={search}
         onChange={handleChangeSearch}
         startAdornment={
-          <InputAdornment position="start">
+          <InputAdornment position='start'>
             <AiOutlineSearch />
           </InputAdornment>
         }
@@ -41,7 +41,7 @@ export default function Search({
           height: 40,
         }}
       />
-      <div className="flex items-center">
+      <div className='flex items-center'>
         <span>Sort by Career Start:</span>
         <TextField
           sx={{ width: 120, '& > div': { height: 40 } }}
