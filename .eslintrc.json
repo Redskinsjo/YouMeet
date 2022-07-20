@@ -22,7 +22,8 @@
     "quotes": ["error", "single"],
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/prefer-namespace-keyword": "off",
-    "@typescript-eslint/no-namespace": "off"
+    "@typescript-eslint/no-namespace": "off",
+    "no-unreachable": "off"
   },
   "overrides": [
     {
