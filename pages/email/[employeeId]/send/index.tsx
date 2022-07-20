@@ -21,9 +21,10 @@ import {
   ListItemText,
   Divider,
 } from '@mui/material'
-import EmailForm, { FormInputs } from '@/components/email-form'
+import EmailForm from '@/components/email-form'
 import EmailEmployeeProfile from '@/components/email-employee-profile'
 import { GetSendEmailDataDocument } from '@/generated'
+import { FormInputs } from '@/types/FormInputs'
 
 const EmailMe: NextPage = () => {
   const router = useRouter()
@@ -92,7 +93,7 @@ const EmailMe: NextPage = () => {
   const list = () => (
     <div
       style={{ width: 250 }}
-      role="presentation"
+      role='presentation'
       onClick={() => toggleDrawer(false)}
     >
       <List>
@@ -144,18 +145,18 @@ const EmailMe: NextPage = () => {
   )
 
   return isAuthenticated ? (
-    <div className="h-full w-full flex flex-col">
+    <div className='h-full w-full flex flex-col'>
       <Header />
-      <Drawer anchor="left" open={open} onClose={() => toggleDrawer(false)}>
+      <Drawer anchor='left' open={open} onClose={() => toggleDrawer(false)}>
         {list()}
       </Drawer>
-      <div className="flex">
+      <div className='flex'>
         {!open && (
           <div
-            className="relative left-0 h-full min-w-[70px] mt-16 bg-slate-50 hover:bg-slate-100 flex justify-center items-center cursor-pointer"
+            className='relative left-0 h-full min-w-[70px] mt-16 bg-slate-50 hover:bg-slate-100 flex justify-center items-center cursor-pointer'
             onClick={() => toggleDrawer(true)}
           >
-            <BiArrowToRight fontSize="24px" />
+            <BiArrowToRight fontSize='24px' />
           </div>
         )}
         {employee && (
@@ -170,7 +171,7 @@ const EmailMe: NextPage = () => {
       </div>
     </div>
   ) : (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className='w-full h-full flex justify-center items-center'>
       <ClipLoader size={66} />
     </div>
   )
