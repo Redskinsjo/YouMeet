@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { i18n } = require('./next-i18next.config')
 
 /** @type {import('next').NextConfig} */
@@ -5,12 +6,12 @@ const nextConfig = {
   i18n,
   reactStrictMode: false,
   images: {
-    domains: ['cloudflare-ipfs.com', process.env.API_PROD_URI],
+    domains: ['cloudflare-ipfs.com', process.env.DATABASE_URL]
   },
   experimental: {
     images: {
-      layoutRaw: true,
-    },
+      layoutRaw: true
+    }
   },
   env: {
     API_PROD_URI: process.env.API_PROD_URI,
@@ -34,8 +35,8 @@ const nextConfig = {
     EMAILJS_USERID: process.env.EMAILJS_USERID,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
-  },
+    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN
+  }
 }
 
 module.exports = nextConfig

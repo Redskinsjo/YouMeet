@@ -21,7 +21,7 @@ const EmployeesList = ({ data }: EmployeesListProps) => {
   return (
     <div className='mt-8 flex flex-col items-center'>
       <div className='flex justify-start items-center w-[90%]'>
-        <h2 className='underline'>Suggested Employees</h2>
+        <h2>Suggested Employees</h2>
         <AiOutlinePlus
           className='text-[38px] cursor-pointer hover:bg-[#2d1783] hover:text-white rounded mx-4'
           onClick={() => {

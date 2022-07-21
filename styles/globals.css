@@ -60,4 +60,7 @@ body,
   .rotate-90-deg {
     transform: rotate(45deg);
   }
+  .oblique {
+    transform: skewY(-1deg);
+  }
 }

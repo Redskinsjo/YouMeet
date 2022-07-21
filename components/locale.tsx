@@ -1,15 +1,13 @@
+/* eslint-disable no-empty-pattern */
 import React from 'react'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
+import { Menu, MenuItem } from '@mui/material'
 import { Button } from '@mui/material'
 
 const Locale = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
-  const router = useRouter()
   const { i18n } = useTranslation()
 
   const handleClick = (event: any, type: 'logout' | 'lang') => {
@@ -28,7 +26,7 @@ const Locale = () => {
       >
         <Button
           sx={{
-            height: '100%',
+            height: '100%'
           }}
         >
           {i18n.language}
@@ -40,16 +38,17 @@ const Locale = () => {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          'aria-labelledby': 'basic-button'
         }}
       >
-        {router.locales?.map((l: string) => (
+        {['en', 'fr'].map((l: string) => (
           <MenuItem
             key={l}
             onClick={() => {
               i18n?.changeLanguage(l)
               handleClose()
             }}
+            aria-label={l === 'fr' ? 'locale-menuitem' : undefined}
           >
             {l.toUpperCase()}
           </MenuItem>

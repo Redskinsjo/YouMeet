@@ -23,9 +23,11 @@
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/prefer-namespace-keyword": "off",
     "@typescript-eslint/no-namespace": "off",
-    "no-unreachable": "off"
+    "no-unreachable": "off",
+    "@typescript-eslint/no-empty-function": "off"
   },
   "overrides": [
+    { "files": ["**/*.test.{ts,tsx}"], "env": { "jest": true } },
     {
       "files": ["*.ts"],
       "processor": "@graphql-eslint/graphql"

@@ -14,7 +14,7 @@ import AllEmployees from '@/components/all-employees'
 const Home: NextPage = () => {
   const { data } = useQuery(GetEmployeesDocument, {
     variables: { filter: '', sort: 2 },
-    nextFetchPolicy: 'cache-first',
+    nextFetchPolicy: 'cache-first'
   })
   const { user, isAuthenticated } = useAuth0()
 
@@ -41,12 +41,12 @@ const Home: NextPage = () => {
                 minHeight: '800px',
                 margin: 20,
                 borderRadius: 20,
-                border: '1px solid black',
+                border: '1px solid black'
               }}
             />
           </div>
           <SuggestedMeets data={data} />
-
+          {/* <div className='relative top-[50px] z-0 oblique bg-gradient-to-l from-violet-500 h-[60px]' /> */}
           <AllEmployees />
           <Footer />
         </div>

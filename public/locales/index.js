@@ -10,17 +10,18 @@ i18n
   .init({
     resources: {
       fr: { translation: translationsFr },
-      en: { translation: translationsEn },
+      en: { translation: translationsEn }
     },
     fallbackLng: 'fr',
     debug: true,
     detection: {
       order: ['queryString', 'cookie'],
-      cache: ['cookie'],
+      cache: ['cookie']
     },
     interpolation: {
-      escapeValue: false,
+      escapeValue: false
     },
+    initImmediate: false
   })
 
 export default i18n

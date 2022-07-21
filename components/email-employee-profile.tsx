@@ -7,7 +7,6 @@ import moment from 'moment'
 import MapboxMap from '@/components/mapbox-map'
 import countries from '@/countriesLatLong.json'
 import { formatDate } from '@/utils/formats'
-
 import { GetEmailProfileDataDocument } from '@/generated'
 
 export default function EmailEmployeeProfile() {

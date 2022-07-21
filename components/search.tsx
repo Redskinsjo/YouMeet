@@ -3,24 +3,19 @@ import React from 'react'
 import { InputAdornment, Input, TextField, MenuItem } from '@mui/material'
 import { AiOutlineSearch } from 'react-icons/ai'
 
-interface SearchProps {
-  search: string
-  handleChangeSearch: (e: any) => void
-  criteria: number
-  handleChangeCriteria: (e: any) => void
-}
+import { SearchProps } from '@/types/SearchProps'
 
 const criterias = [
   { value: 2, label: 'Default' },
   { value: -1, label: 'Asc' },
-  { value: 1, label: 'Desc' },
+  { value: 1, label: 'Desc' }
 ]
 
 export default function Search({
   search,
   handleChangeSearch,
   criteria,
-  handleChangeCriteria,
+  handleChangeCriteria
 }: SearchProps) {
   return (
     <div className='flex h-12'>
@@ -38,8 +33,9 @@ export default function Search({
           padding: '4px',
           borderRadius: '5px',
           margin: '4px',
-          height: 40,
+          height: 40
         }}
+        inputProps={{ 'data-testid': 'search-input' }}
       />
       <div className='flex items-center'>
         <span>Sort by Career Start:</span>
@@ -48,6 +44,7 @@ export default function Search({
           select
           value={criteria}
           onChange={handleChangeCriteria}
+          SelectProps={{ inputProps: { 'data-testid': 'criteria-select' } }}
         >
           {criterias.map((opt) => (
             <MenuItem key={opt.value} value={opt.value}>

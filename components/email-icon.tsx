@@ -13,4 +13,4 @@ const EmailIcon = ({ onClick }: EmailIconProps) => {
   )
 }
 
-export default React.forwardRef(EmailIcon)
+export default EmailIcon

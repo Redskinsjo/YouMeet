@@ -153,7 +153,7 @@ const EmailMe: NextPage = () => {
       <div className='flex'>
         {!open && (
           <div
-            className='relative left-0 h-full min-w-[70px] mt-16 bg-slate-50 hover:bg-slate-100 flex justify-center items-center cursor-pointer'
+            className='relative left-0 h-full min-w-[70px] bg-slate-50 hover:bg-slate-100 flex justify-center items-center cursor-pointer'
             onClick={() => toggleDrawer(true)}
           >
             <BiArrowToRight fontSize='24px' />

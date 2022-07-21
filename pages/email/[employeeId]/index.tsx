@@ -6,7 +6,6 @@ import { BiArrowToRight } from 'react-icons/bi'
 import { TiArrowBack } from 'react-icons/ti'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQuery } from '@apollo/client'
-import { useSession } from 'next-auth/react'
 
 import Header from '@/components/header'
 import {
@@ -15,7 +14,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Divider,
+  Divider
 } from '@mui/material'
 import { FormInputs } from '@/types/FormInputs'
 
@@ -25,25 +24,18 @@ const EmailMe = () => {
   const router = useRouter()
   const { data } = useQuery(GetSendEmailDataDocument, {
     variables: {
-      id: router.query.employeeId as string | undefined,
-    },
+      id: router.query.employeeId as string | undefined
+    }
   })
   const [open, setOpen] = useState(false)
-  const { data: session } = useSession()
-
-  useEffect(() => {
-    if (!session) {
-      router.push('/login')
-    }
-  }, [])
 
   const toggleDrawer = (action: boolean) => setOpen(action)
   const { reset } = useForm<FormInputs>({
     defaultValues: {
       to: '',
       subject: '',
-      text: '',
-    },
+      text: ''
+    }
   })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -56,7 +48,7 @@ const EmailMe = () => {
       reset({
         to: data.oneEmployee.email,
         subject: '',
-        text: '',
+        text: ''
       })
     }
   }, [data])

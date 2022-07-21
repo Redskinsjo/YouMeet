@@ -21,12 +21,12 @@ const BackCard = ({ emp, lockedCards, setLockedCards }: BackCardType) => {
           ? 'absolute h-full w-full flex flex-col visible'
           : 'absolute h-full w-full invisible group-hover:visible flex flex-col group-hover:appear-slowly'
       }
-      data-test="card-back"
+      data-test='card-back'
     >
-      <div className="w-full flex justify-end">
+      <div className='relative w-full flex justify-end'>
         {lockedCards.includes(emp.id) ? (
           <AiFillUnlock
-            className="cursor-pointer"
+            className='cursor-pointer'
             onClick={() => {
               const copy = [...lockedCards]
               const index = copy.findIndex((el) => el === emp.id)
@@ -36,7 +36,7 @@ const BackCard = ({ emp, lockedCards, setLockedCards }: BackCardType) => {
           />
         ) : (
           <AiFillLock
-            className="cursor-pointer"
+            className='cursor-pointer'
             onClick={() => {
               setLockedCards([...lockedCards, emp.id])
               console.log(emp.color)
@@ -44,13 +44,13 @@ const BackCard = ({ emp, lockedCards, setLockedCards }: BackCardType) => {
           />
         )}
       </div>
-      <h1 className="font-bold text-xl mt-6">
+      <h1 className='font-bold text-xl mt-6'>
         {emp.firstname + ' ' + emp.lastname}
       </h1>
-      <p className="font-medium text-base">{emp.job}</p>
-      <p className="mt-8 text-xs px-10 text-justify">{emp.description}</p>
-      <p className="mt-8 text-xs px-10 flex-1" data-test="from">
-        From: <span className="ml-2 font-bold">{emp.from}</span>
+      <p className='font-medium text-base'>{emp.job}</p>
+      <p className='mt-8 text-xs px-10 text-justify'>{emp.description}</p>
+      <p className='mt-8 text-xs px-10 flex-1' data-test='from'>
+        From: <span className='ml-2 font-bold'>{emp.from}</span>
       </p>
       <EmailIcon
         onClick={() => {

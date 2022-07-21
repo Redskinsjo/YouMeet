@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["cypress", "cypress-real-events"],
+    "types": [
+      "cypress",
+      "cypress-real-events",
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,14 +27,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "pages/api/lib/mongodb.js",
-    "pages/api/auth/[...nextauth].js",
-    "locales/index.js",
-    "prisma/index.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
