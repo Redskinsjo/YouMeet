@@ -10,6 +10,9 @@ import SuggestedMeets from '@/components/suggested-meets'
 import Footer from '@/components/footer'
 import { GetEmployeesDocument } from '../generated'
 import AllEmployees from '@/components/all-employees'
+import Hero from '@/components/hero'
+import LinkCTA from '@/components/link-CTA'
+import HeroImage from '@/components/hero-image'
 
 const Home: NextPage = () => {
   const { data } = useQuery(GetEmployeesDocument, {
@@ -21,7 +24,7 @@ const Home: NextPage = () => {
   return (
     <div className='w-full'>
       <Header />
-      {isAuthenticated && user && (
+      {isAuthenticated && user ? (
         <div className='h-full'>
           <Head>
             <title>YouMeet</title>
@@ -49,6 +52,16 @@ const Home: NextPage = () => {
           {/* <div className='relative top-[50px] z-0 oblique bg-gradient-to-l from-violet-500 h-[60px]' /> */}
           <AllEmployees />
           <Footer />
+        </div>
+      ) : (
+        <div className='h-full flex justify-center'>
+          <div className='web:flex justify-center w-[90%] mobile3:min-h-[350px] web:py-[50px] py-[25px] bg-[#2F1781] appear-slowly my-[20px] rounded'>
+            <div className='flex justify-between items-center flex-[2_2_0%]'>
+              <Hero />
+              <HeroImage />
+            </div>
+            <LinkCTA />
+          </div>
         </div>
       )}
     </div>

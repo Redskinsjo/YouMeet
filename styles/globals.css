@@ -8,7 +8,6 @@ body,
   height: 100%;
   margin: 0;
   font-family: 'Alegreya Sans', sans-serif;
-  /* overflow-y: hidden; */
 }
 
 @keyframes appear_fastly {
@@ -34,6 +33,39 @@ body,
   }
 }
 
+@keyframes discover_slowly {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulsing {
+  0% {
+    background-color: inherit;
+  }
+  50% {
+    background-color: #2f1781;
+  }
+  100% {
+    background-color: #a79dc8;
+  }
+}
+
+@layer components {
+  .shady-CTA {
+    @apply text-[#d7cDf8] my-[10px] text-[11px] mobile2:text-[14px] mobile:text-[1.17em];
+  }
+  .bright-CTA {
+    @apply text-[#fff] my-[10px] text-[11px] mobile2:text-[14px] mobile:text-[1.17em];
+  }
+}
+
 @layer utilities {
   .vh-70px {
     height: calc(100vh - 70px);
@@ -46,6 +78,12 @@ body,
   }
   .appear-fastly {
     animation: appear_fastly 0.1s ease-in;
+  }
+  .discover-slowly {
+    animation: discover_slowly 1.5s ease-in;
+  }
+  .pulsing {
+    animation: pulsing 1s infinit linear;
   }
   .perspective-1000 {
     perspective: 1000px;
@@ -62,5 +100,21 @@ body,
   }
   .oblique {
     transform: skewY(-1deg);
+  }
+  .media-web-hero-image {
+    width: 350px;
+    height: 400px;
+  }
+  .media-web2-hero-image {
+    width: 320px;
+    height: 280px;
+  }
+  .media-mobile2-hero-image {
+    width: 240px;
+    height: 210px;
+  }
+  .media-mobile3-hero-image {
+    width: 160px;
+    height: 140px;
   }
 }
