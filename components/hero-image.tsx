@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Image from 'next/future/image'
+import hero from '/../public/hero.png'
 
 const HeroImage = () => {
   return (
@@ -8,7 +9,7 @@ const HeroImage = () => {
       <div className='w-[120px] h-[105px] mobile3:media-mobile3-hero-image mobile2:media-mobile2-hero-image web2:media-web2-hero-image web:media-web-hero-image p-[4px] shadow-md rounded bg-white relative'>
         <div className='w-[120px] h-[105px] mobile3:media-mobile3-hero-image mobile2:media-mobile2-hero-image web2:media-web2-hero-image web:media-web-hero-image shadow-md absolute z-0'>
           <Image
-            src={'/../public/hero.png'}
+            src={hero}
             width={400}
             height={350}
             className='absolute z-0 w-[120px] h-[105px] mobile3:media-mobile3-hero-image mobile2:media-mobile2-hero-image web2:media-web2-hero-image web:media-web-hero-image '

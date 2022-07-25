@@ -1,17 +1,28 @@
 import React from 'react'
 import Image from 'next/future/image'
+import { StaticImageData } from 'next/dist/client/image.d'
 import { useTranslation } from 'react-i18next'
+
+import people1 from '../public/people1.jpg'
+import people2 from '../public/people2.jpg'
+
+const images = {
+  '../public/people1.jpg': people1,
+  '../public/people2.jpg': people2,
+}
 
 const MarketingCard = ({
   firstComp,
   src,
-  card
+  card,
 }: {
   firstComp: 'text' | 'img'
   src: string
   card: number
 }) => {
   const { t } = useTranslation()
+
+  const image = (images as { [path: string]: StaticImageData })[src]
 
   return (
     <div
@@ -22,7 +33,7 @@ const MarketingCard = ({
       }
     >
       <div className='img-area flex justify-center items-center'>
-        <Image src={src} width={300} height={210} />
+        <Image src={image} width={300} height={210} />
       </div>
 
       <div className='text-area bg-[#fffcf8] m-[30px] px-[15px] flex flex-col justify-center'>

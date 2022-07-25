@@ -19,7 +19,7 @@ const MarketingCard = lazy(() => import('@/components/marketing-card'))
 const Home: NextPage = () => {
   const { data } = useQuery(GetEmployeesDocument, {
     variables: { filter: '', sort: 2 },
-    nextFetchPolicy: 'cache-first'
+    nextFetchPolicy: 'cache-first',
   })
   const { user, isAuthenticated } = useAuth0()
 
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
                 minHeight: '800px',
                 margin: 20,
                 borderRadius: 20,
-                border: '1px solid black'
+                border: '1px solid black',
               }}
             />
           </div>
@@ -81,7 +81,7 @@ const Home: NextPage = () => {
                 <Suspense fallback={<div>Chargement..</div>}>
                   <MarketingCard
                     firstComp={card % 2 === 0 ? 'text' : 'img'}
-                    src={`/../public/people${card}.jpg`}
+                    src={`../public/people${card}.jpg`}
                     card={card}
                   />
                 </Suspense>
