@@ -21,7 +21,7 @@
       {
         "kind": "ENUM",
         "name": "CacheControlScope",
-        "description": null,
+        "description": "enum for the scope of @cacheControl directive",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -44,7 +44,7 @@
       {
         "kind": "SCALAR",
         "name": "Date",
-        "description": null,
+        "description": "Date custom scalar type",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -58,7 +58,7 @@
         "fields": [
           {
             "name": "avatar",
-            "description": null,
+            "description": "Image photo of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -74,7 +74,7 @@
           },
           {
             "name": "color",
-            "description": null,
+            "description": "color unique for the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -90,7 +90,7 @@
           },
           {
             "name": "description",
-            "description": null,
+            "description": "description of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -106,7 +106,7 @@
           },
           {
             "name": "email",
-            "description": null,
+            "description": "email address of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -122,7 +122,7 @@
           },
           {
             "name": "firstname",
-            "description": null,
+            "description": "firstname of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -138,7 +138,7 @@
           },
           {
             "name": "from",
-            "description": null,
+            "description": "origin location of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -154,7 +154,7 @@
           },
           {
             "name": "fullname",
-            "description": null,
+            "description": "fullname of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -170,7 +170,7 @@
           },
           {
             "name": "id",
-            "description": null,
+            "description": "Identification of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -186,7 +186,7 @@
           },
           {
             "name": "job",
-            "description": null,
+            "description": "job of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -202,7 +202,7 @@
           },
           {
             "name": "lastname",
-            "description": null,
+            "description": "lastname of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -218,7 +218,7 @@
           },
           {
             "name": "lat",
-            "description": null,
+            "description": "latitude location of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -234,7 +234,7 @@
           },
           {
             "name": "long",
-            "description": null,
+            "description": "longitude location of the employee",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -250,7 +250,7 @@
           },
           {
             "name": "starting",
-            "description": "Description for field:\nstarting is the starting date of the employee within the company",
+            "description": "starting is the starting date of the employee within the company",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -288,12 +288,60 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Mutation",
-        "description": null,
+        "name": "InterestedIndividual",
+        "description": "somebody that filled email on website",
         "fields": [
           {
+            "name": "email",
+            "description": "email of the individual",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Mutation",
+        "description": "all mutations of the app",
+        "fields": [
+          {
+            "name": "createInterested",
+            "description": "create individual and send email",
+            "args": [
+              {
+                "name": "email",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "InterestedIndividual",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sendEmail",
-            "description": null,
+            "description": "send an email to an employee",
             "args": [
               {
                 "name": "from",
@@ -361,11 +409,11 @@
       {
         "kind": "OBJECT",
         "name": "Query",
-        "description": null,
+        "description": "all queries of the app",
         "fields": [
           {
             "name": "employees",
-            "description": null,
+            "description": "fetch many employees following the search filter and the sorting",
             "args": [
               {
                 "name": "filter",
@@ -414,7 +462,7 @@
           },
           {
             "name": "oneEmployee",
-            "description": null,
+            "description": "fetch one employee following its identification (id)",
             "args": [
               {
                 "name": "id",
@@ -450,11 +498,11 @@
       {
         "kind": "OBJECT",
         "name": "SendEmailResponse",
-        "description": null,
+        "description": "Response from an email sent to an employee",
         "fields": [
           {
             "name": "hello",
-            "description": null,
+            "description": "Greets the client for a valid sent email",
             "args": [],
             "type": {
               "kind": "SCALAR",

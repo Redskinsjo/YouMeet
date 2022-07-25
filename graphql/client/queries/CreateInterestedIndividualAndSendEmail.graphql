@@ -1,0 +1,5 @@
+mutation CreateInterestedIndividualAndSendEmail($email: String) {
+  createInterested(email: $email) {
+    email
+  }
+}

@@ -76,6 +76,16 @@ const typeDefs = gql`
   }
 
   """
+  somebody that filled email on website
+  """
+  type InterestedIndividual {
+    """
+    email of the individual
+    """
+    email: String
+  }
+
+  """
   all queries of the app
   """
   type Query {
@@ -93,6 +103,10 @@ const typeDefs = gql`
   all mutations of the app
   """
   type Mutation {
+    """
+    create individual and send email
+    """
+    createInterested(email: String!): InterestedIndividual
     """
     send an email to an employee
     """

@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model interestedindividual {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  email             String
+}
+
 model accounts {
   id                String @id @default(auto()) @map("_id") @db.ObjectId
   access_token      String

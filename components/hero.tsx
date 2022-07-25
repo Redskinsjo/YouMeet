@@ -19,7 +19,7 @@ const Hero = () => {
   }, [index])
 
   return (
-    <div className='flex-1 m-[20px] mobile:m-[50px] bg-[#574499] p-[15px]'>
+    <div className='flex-1 m-[20px] mobile:m-[50px] bg-[#574499] p-[15px] shadow-xl rounded'>
       <div>
         <BiMessageRoundedDots className='text-[34px] text-[#d7cDf8]' />
       </div>

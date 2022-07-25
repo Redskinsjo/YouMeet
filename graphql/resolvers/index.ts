@@ -1,10 +1,13 @@
-import nodemailer from 'nodemailer'
+/* eslint-disable */
+/* graphql-eslint */
+
 import { Kind, GraphQLScalarType } from 'graphql'
 
 import EmployeeMongoDB from '@/pages/api/models/employees'
 import { Resolvers } from '@/generated'
 import prisma from '@/lib/prisma'
-import { Employee } from '@/generated'
+import { Employee, InterestedIndividual } from '@/generated'
+import { sendEmailCustom } from '@/utils/sendEmailCustom'
 
 const resolvers: Resolvers = {
   Date: new GraphQLScalarType({
@@ -87,29 +90,33 @@ const resolvers: Resolvers = {
   },
   Mutation: {
     sendEmail: (parent: any, args: any) => {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.GMAIL_ADDRESS,
-          pass: process.env.GMAIL_PASSWORD,
-        },
-      })
-      const mailOptions = {
-        from: args.from,
-        to: args.to,
-        subject: args.subject,
-        text: args.text,
+      return sendEmailCustom(args)
+    },
+    createInterested: async (parent, args, context, info) => {
+      let individual
+
+      if (args.email) {
+        individual = await prisma.interestedindividual.findFirst({
+          where: {
+            email: args.email.toLowerCase(),
+          },
+        })
       }
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error)
-        } else {
-          console.log('Email sent: ' + info.response)
+      if (individual) return null
+
+      let createdIndividual: InterestedIndividual | null | undefined = null
+      if (args.email) {
+        createdIndividual = await prisma.interestedindividual.create({
+          data: {
+            email: args.email,
+          },
+        })
+        if (createdIndividual) {
+          sendEmailCustom(args)
         }
-      })
-      return {
-        hello: 'me',
       }
+
+      return createdIndividual
     },
   },
 }

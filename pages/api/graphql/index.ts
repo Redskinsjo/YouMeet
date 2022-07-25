@@ -13,7 +13,7 @@ mongoose.connect(`${process.env.MONGODB_URI}`)
 export default createServer<{ req: NextApiRequest; res: NextApiResponse }>({
   schema: {
     typeDefs,
-    resolvers,
+    resolvers
   },
-  graphiql: true,
+  graphiql: true
 })

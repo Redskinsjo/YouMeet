@@ -1,6 +1,8 @@
 overwrite: true
-schema: './graphql/schema/schema'
-documents: './graphql/**/*.graphql'
+schema:
+  - 'http://localhost:3000/api/graphql'
+documents:
+  - './graphql/**/*.graphql'
 generates:
   ./generated.ts:
     plugins:
@@ -11,3 +13,5 @@ generates:
   ./graphql.schema.json:
     plugins:
       - 'introspection'
+require:
+  - ts-node

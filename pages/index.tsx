@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useQuery } from '@apollo/client'
 import { useAuth0 } from '@auth0/auth0-react'
+import Image from 'next/future/image'
 
 import Header from '@/components/header'
 import MapboxMap from '@/components/mapbox-map'
@@ -13,6 +14,7 @@ import AllEmployees from '@/components/all-employees'
 import Hero from '@/components/hero'
 import LinkCTA from '@/components/link-CTA'
 import HeroImage from '@/components/hero-image'
+const MarketingCard = lazy(() => import('@/components/marketing-card'))
 
 const Home: NextPage = () => {
   const { data } = useQuery(GetEmployeesDocument, {
@@ -54,16 +56,41 @@ const Home: NextPage = () => {
           <Footer />
         </div>
       ) : (
-        <div className='h-full flex justify-center'>
-          <div className='web:flex justify-center w-[90%] mobile3:min-h-[350px] web:py-[50px] py-[25px] bg-[#2F1781] appear-slowly my-[20px] rounded'>
-            <div className='flex justify-between items-center flex-[2_2_0%]'>
-              <Hero />
-              <HeroImage />
+        <div className='h-full flex flex-col justify-center items-center'>
+          <div className='flex justify-center w-[90%] min-h-[350px] bg-[#2F1781] appear-slowly my-[20px] rounded relative'>
+            <div className='flex justify-center items-center absolute z-0'>
+              <Image
+                src='/../public/hero2.jpg'
+                width={500}
+                height={350}
+                className='h-[350px] w-[540px]'
+              />
             </div>
+
+            <div className='flex justify-between items-center flex-1 relative'>
+              <Hero />
+              {/* flex-[2_2_0%] */}
+              {/* <HeroImage /> */}
+            </div>
+            <div className='web2:flex-1 mobile3:w-[60px]' />
             <LinkCTA />
+          </div>
+          <div className='bg-gray-100 w-[90%] rounded'>
+            {[1, 2].map((card) => (
+              <div key={card}>
+                <Suspense fallback={<div>Chargement..</div>}>
+                  <MarketingCard
+                    firstComp={card % 2 === 0 ? 'text' : 'img'}
+                    src={`/../public/people${card}.jpg`}
+                    card={card}
+                  />
+                </Suspense>
+              </div>
+            ))}
           </div>
         </div>
       )}
+      <Footer />
     </div>
   )
 }

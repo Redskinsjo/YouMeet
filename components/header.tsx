@@ -73,7 +73,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
             open={open !== undefined && open.type === 'logout'}
             onClose={handleClose}
             MenuListProps={{
-              'aria-labelledby': 'basic-button',
+              'aria-labelledby': 'basic-button'
             }}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -90,8 +90,8 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
             sx={{
               ':hover': {
                 backgroundColor: '#D6D2E6',
-                color: '#2D1783',
-              },
+                color: '#2D1783'
+              }
             }}
             onClick={() => loginWithRedirect()}
           >

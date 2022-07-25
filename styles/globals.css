@@ -117,4 +117,18 @@ body,
     width: 160px;
     height: 140px;
   }
+  .grid-areas-text {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 'text img';
+  }
+  .grid-areas-img {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'img text';
+  }
+  .text-area {
+    grid-area: text;
+  }
+  .img-area {
+    grid-area: img;
+  }
 }
