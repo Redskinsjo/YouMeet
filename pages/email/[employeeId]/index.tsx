@@ -6,6 +6,8 @@ import { BiArrowToRight } from 'react-icons/bi'
 import { TiArrowBack } from 'react-icons/ti'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useQuery } from '@apollo/client'
+import { useAuth0 } from '@auth0/auth0-react'
+import { ClipLoader } from 'react-spinners'
 
 import Header from '@/components/header'
 import {
@@ -14,7 +16,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Divider
+  Divider,
 } from '@mui/material'
 import { FormInputs } from '@/types/FormInputs'
 
@@ -24,18 +26,19 @@ const EmailMe = () => {
   const router = useRouter()
   const { data } = useQuery(GetSendEmailDataDocument, {
     variables: {
-      id: router.query.employeeId as string | undefined
-    }
+      id: router.query.employeeId as string | undefined,
+    },
   })
   const [open, setOpen] = useState(false)
+  const { user, isAuthenticated } = useAuth0()
 
   const toggleDrawer = (action: boolean) => setOpen(action)
   const { reset } = useForm<FormInputs>({
     defaultValues: {
       to: '',
       subject: '',
-      text: ''
-    }
+      text: '',
+    },
   })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -48,10 +51,16 @@ const EmailMe = () => {
       reset({
         to: data.oneEmployee.email,
         subject: '',
-        text: ''
+        text: '',
       })
     }
   }, [data])
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace('/')
+    }
+  }, [])
 
   const list = () => (
     <div
@@ -104,7 +113,7 @@ const EmailMe = () => {
     </div>
   )
 
-  return (
+  return isAuthenticated ? (
     <div className='h-full w-full flex flex-col'>
       <Header />
       <Drawer anchor='left' open={open} onClose={() => toggleDrawer(false)}>
@@ -120,6 +129,10 @@ const EmailMe = () => {
           </div>
         )}
       </div>
+    </div>
+  ) : (
+    <div className='w-full h-full flex justify-center items-center'>
+      <ClipLoader size={66} />
     </div>
   )
 }

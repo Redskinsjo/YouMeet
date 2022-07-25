@@ -90,6 +90,12 @@ const EmailMe: NextPage = () => {
     }
   }, [employee])
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace('/')
+    }
+  }, [])
+
   const list = () => (
     <div
       style={{ width: 250 }}

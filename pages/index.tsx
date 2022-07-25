@@ -13,7 +13,8 @@ import { GetEmployeesDocument } from '../generated'
 import AllEmployees from '@/components/all-employees'
 import Hero from '@/components/hero'
 import LinkCTA from '@/components/link-CTA'
-import HeroImage from '@/components/hero-image'
+import hero from '../public/hero2.jpg'
+
 const MarketingCard = lazy(() => import('@/components/marketing-card'))
 
 const Home: NextPage = () => {
@@ -22,6 +23,8 @@ const Home: NextPage = () => {
     nextFetchPolicy: 'cache-first',
   })
   const { user, isAuthenticated } = useAuth0()
+
+  console.log(isAuthenticated)
 
   return (
     <div className='w-full'>
@@ -60,7 +63,7 @@ const Home: NextPage = () => {
           <div className='flex justify-center w-[90%] min-h-[350px] bg-[#2F1781] appear-slowly my-[20px] rounded relative'>
             <div className='flex justify-center items-center absolute z-0'>
               <Image
-                src='/../public/hero2.jpg'
+                src={hero}
                 width={500}
                 height={350}
                 className='h-[350px] w-[540px]'
@@ -69,8 +72,6 @@ const Home: NextPage = () => {
 
             <div className='flex justify-between items-center flex-1 relative'>
               <Hero />
-              {/* flex-[2_2_0%] */}
-              {/* <HeroImage /> */}
             </div>
             <div className='web2:flex-1 mobile3:w-[60px]' />
             <LinkCTA />
