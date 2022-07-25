@@ -106,7 +106,7 @@ const typeDefs = gql`
     """
     create individual and send email
     """
-    createInterested(email: String!): InterestedIndividual
+    createInterested(email: String): InterestedIndividual
     """
     send an email to an employee
     """

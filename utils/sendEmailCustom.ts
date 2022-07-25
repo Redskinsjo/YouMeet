@@ -8,8 +8,7 @@ export function sendEmailCustom(
         subject: string
         text: string
       }
-    | { email: string }
-    | undefined
+    | { email?: string | null | undefined }
 ) {
   if (args) {
     const transporter = nodemailer.createTransport({
@@ -61,5 +60,5 @@ export function sendEmailCustom(
       hello: 'me',
     }
   }
-  return new Error('no args found')
+  return null
 }
