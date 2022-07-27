@@ -73,7 +73,7 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
             open={open !== undefined && open.type === 'logout'}
             onClose={handleClose}
             MenuListProps={{
-              'aria-labelledby': 'basic-button'
+              'aria-labelledby': 'basic-button',
             }}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
@@ -85,13 +85,13 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
         <div className='flex border-box h-full'>
           <LocaleChoice />
           <Button
-            className='flex items-center text-white bg-[#574499] capitalize'
+            className='mobile4:text-[11px] flex items-center text-white bg-[#574499] capitalize'
             endIcon={<BiLogInCircle className='icon' />}
             sx={{
               ':hover': {
                 backgroundColor: '#D6D2E6',
-                color: '#2D1783'
-              }
+                color: '#2D1783',
+              },
             }}
             onClick={() => loginWithRedirect()}
           >

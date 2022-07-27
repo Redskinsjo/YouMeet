@@ -28,15 +28,15 @@ const MarketingCard = ({
     <div
       className={
         firstComp === 'text'
-          ? 'grid grid-cols-2 grid-areas-text border-[0.5px] border-solid border-gray-200 p-[20px] appear-slowly'
-          : 'grid grid-cols-2 grid-areas-img border-[0.5px] border-solid border-gray-200 p-[20px] appear-slowly'
+          ? 'grid grid-cols-2 grid-areas-text border-[0.5px] border-solid border-gray-200 p-[20px] appear-slowly mobile4:flex mobile4:flex-col'
+          : 'grid grid-cols-2 grid-areas-img border-[0.5px] border-solid border-gray-200 p-[20px] appear-slowly mobile4:flex mobile4:flex-col'
       }
     >
       <div className='img-area flex justify-center items-center'>
         <Image src={image} width={300} height={210} />
       </div>
 
-      <div className='text-area bg-[#fffcf8] m-[30px] px-[15px] flex flex-col justify-center'>
+      <div className='text-area bg-[#fffcf8] m-[30px] px-[15px] flex flex-col justify-center overflow-scroll'>
         <h3>{t('marketing-slogan' + card)}</h3>
         <div className='w-full h-[190px] text-[14px] box-border font-light leading-5'>
           {t('marketing-content' + card)}

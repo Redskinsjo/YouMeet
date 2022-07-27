@@ -3,6 +3,7 @@ import { AppProps } from 'next/app'
 import { Provider as ReduxProvider } from 'react-redux'
 import { StyledEngineProvider } from '@mui/material'
 import { Auth0Provider } from '@auth0/auth0-react'
+import Head from 'next/head'
 
 import GraphQLProvider from '@/graphql/client'
 import { store } from '@/redux/store'
@@ -25,6 +26,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ErrorBoundary>
           <GraphQLProvider>
             <StyledEngineProvider injectFirst>
+              <Head>
+                <meta
+                  name='viewport'
+                  content='width=device-width, initial-scale=1'
+                />
+              </Head>
               <Component {...pageProps} />
             </StyledEngineProvider>
           </GraphQLProvider>

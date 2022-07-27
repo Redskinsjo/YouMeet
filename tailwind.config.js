@@ -4,7 +4,7 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}'
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     screens: {
@@ -12,7 +12,8 @@ module.exports = {
       web2: '950px',
       mobile: '759px',
       mobile2: { min: '589px', max: '759px' },
-      mobile3: '469px'
+      mobile3: '469px',
+      mobile4: { min: '300px', max: '469px' },
     },
     extend: {},
     fontFamily: {
@@ -21,9 +22,9 @@ module.exports = {
         'BlinkMacSystemFont',
         'Segoe UI',
         'Roboto',
-        'Oxygen'
-      ]
-    }
+        'Oxygen',
+      ],
+    },
   },
   plugins: [
     plugin(function ({ addUtilities }) {
@@ -34,6 +35,6 @@ module.exports = {
       }
 
       addUtilities(newUtilities)
-    })
-  ]
+    }),
+  ],
 }
