@@ -57,16 +57,6 @@ export default function AreaChart({
 }) {
   if (width < 10) return null
 
-  return arr
-    .sort((a, b) => {
-      return a - b
-    })
-    .reduce((acc, curr) => {
-      if (curr !== acc + 1) {
-        return curr
-      }
-      return acc
-    }, 0)
   return (
     <Group left={left || margin.left} top={top || margin.top}>
       <LinearGradient
