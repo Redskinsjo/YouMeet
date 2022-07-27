@@ -20,8 +20,8 @@ const MenuNav = () => {
           key={o.name}
           className={
             index === arr.length - 1
-              ? 'rounded border-[1px] border-solid border-slate-200 p-[5px] bg-white hover:bg-[#2F167D] hover:text-white cursor-pointer'
-              : 'rounded border-[1px] border-solid border-slate-200 mr-[15px] p-[5px] bg-white hover:bg-[#2F167D] hover:text-white cursor-pointer'
+              ? 'rounded border-[1px] border-solid border-slate-200 p-[5px] bg-white hover:bg-[#2F167D] hover:appear-fastly hover:text-white cursor-pointer'
+              : 'rounded border-[1px] border-solid border-slate-200 mr-[15px] p-[5px] bg-white hover:bg-[#2F167D] hover:appear-fastly hover:text-white cursor-pointer'
           }
         >
           <div className='flex justify-between items-center'>
