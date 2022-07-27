@@ -8,14 +8,14 @@ import { SearchProps } from '@/types/SearchProps'
 const criterias = [
   { value: 2, label: 'Default' },
   { value: -1, label: 'Asc' },
-  { value: 1, label: 'Desc' }
+  { value: 1, label: 'Desc' },
 ]
 
 export default function Search({
   search,
   handleChangeSearch,
   criteria,
-  handleChangeCriteria
+  handleChangeCriteria,
 }: SearchProps) {
   return (
     <div className='flex h-12'>
@@ -33,7 +33,7 @@ export default function Search({
           padding: '4px',
           borderRadius: '5px',
           margin: '4px',
-          height: 40
+          height: 40,
         }}
         inputProps={{ 'data-testid': 'search-input' }}
       />

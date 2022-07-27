@@ -41,12 +41,12 @@ const AllEmployees = () => {
   }, [criteria, search])
 
   return (
-    <div className='mt-8 flex flex-col items-center bg-gradient-to-l from-violet-500'>
+    <div className='flex flex-col items-center bg-all-employees pb-[20px]'>
       <div className='flex justify-start items-center w-[90%]'>
-        <h2 className='underline'>All Employees</h2>
+        <h2 className='underline text-all-employees'>All Employees</h2>
       </div>
 
-      <div className='h-[80px] flex justify-center items-center bg-purple-200 px-6 rounded-xl shadow-inner'>
+      <div className='h-[80px] flex justify-center items-center bg-white px-6 rounded-xl shadow-inner border-[3px] border-solid border-[#12037C]'>
         <Search
           search={search}
           handleChangeSearch={handleChangeSearch}

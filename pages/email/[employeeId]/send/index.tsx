@@ -94,6 +94,8 @@ const EmailMe: NextPage = () => {
     if (!isAuthenticated) {
       router.replace('/')
     }
+    console.log(history)
+    // window.addEventListener("")
   }, [])
 
   const list = () => (

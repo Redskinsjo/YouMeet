@@ -52,11 +52,13 @@ const BackCard = ({ emp, lockedCards, setLockedCards }: BackCardType) => {
       <p className='mt-8 text-xs px-10 flex-1' data-test='from'>
         From: <span className='ml-2 font-bold'>{emp.from}</span>
       </p>
-      <EmailIcon
-        onClick={() => {
-          router.push(`./email/${emp.id}/send`)
-        }}
-      />
+      <div className='flex justify-start absolute bottom-[-9px]'>
+        <EmailIcon
+          onClick={() => {
+            router.push(`./email/${emp.id}/send`)
+          }}
+        />
+      </div>
     </div>
   )
 }

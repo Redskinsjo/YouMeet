@@ -11,6 +11,9 @@ const translations = {
     'Each individual belongs to a group, a category, a society, a world.  The general tendency is for rapid communication and understanding by all and for all tends to create failures, not to mention sometimes the lack of effort of some to be intelligible. We, as individuals, need to really listen to others. It is a personality trait that shows a lot of professionalism, seriousness and courage. Participating will ask you to dare, succeed will ask you to discover.',
   'marketing-slogan2': 'Better listen',
   interestedIndividualTextFieldLabel: 'Error',
+  'menu-nav-chat': 'Chat',
+  'menu-nav-work': 'Work',
+  'menu-nav-bet': 'Bet',
 }
 
 export default translations

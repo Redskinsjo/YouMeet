@@ -5,4 +5,5 @@ export interface EmailFieldProps {
   control?: Control<FormInputs>
   name: 'text' | 'from' | 'to' | 'subject'
   email?: string
+  children?: any
 }

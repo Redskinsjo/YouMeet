@@ -6,12 +6,13 @@ const nextConfig = {
   i18n,
   reactStrictMode: false,
   images: {
-    domains: ['cloudflare-ipfs.com', process.env.DATABASE_URL]
+    domains: ['cloudflare-ipfs.com', process.env.DATABASE_URL],
   },
   experimental: {
+    scrollRestoration: true,
     images: {
-      allowFutureImage: true
-    }
+      allowFutureImage: true,
+    },
   },
   env: {
     API_PROD_URI: process.env.API_PROD_URI,
@@ -35,8 +36,8 @@ const nextConfig = {
     EMAILJS_USERID: process.env.EMAILJS_USERID,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN
-  }
+    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
+  },
 }
 
 module.exports = nextConfig

@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form'
 
 import { EmailFieldProps } from '@/types/EmailFieldProps'
 
-const EmailField = ({ control, name, email }: EmailFieldProps) => {
+const EmailField = ({ control, name, email, children }: EmailFieldProps) => {
   return !control ? (
     <div>
       <TextField
@@ -28,7 +28,9 @@ const EmailField = ({ control, name, email }: EmailFieldProps) => {
           },
           boxShadow: '5px 5px 5px rgba(0,0,0,0.2)',
         }}
-      />
+      >
+        {children}
+      </TextField>
     </div>
   ) : (
     <Controller
@@ -60,7 +62,9 @@ const EmailField = ({ control, name, email }: EmailFieldProps) => {
                 },
                 boxShadow: '5px 5px 5px rgba(0,0,0,0.2)',
               }}
-            />
+            >
+              {children}
+            </TextField>
           </div>
         )
       }}

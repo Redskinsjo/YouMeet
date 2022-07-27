@@ -11,5 +11,8 @@ const translations = {
     'Chaque individu fait partie d’un groupe, d’une catégorie, d’une société, d’un monde.  La tendance générale est à la communication rapide et la compréhension par tous et pour tous tend à créer des manquements, sans parler parfois du manque d’efforts de certains à être intelligibles. Nous, individus, avons besoin d’être vraiment à l’écoute des autres. C’est un trait de la personnalité qui montre beaucoup de professionalisme, de sérieux et de courage. Participer vous demandera d’oser, réussir vous demandera de découvrir.',
   'marketing-slogan2': 'Mieux écouter',
   interestedIndividualTextFieldLabel: 'Erreur',
+  'menu-nav-chat': 'Discuter',
+  'menu-nav-work': 'Travailler',
+  'menu-nav-bet': 'Parier',
 }
 export default translations

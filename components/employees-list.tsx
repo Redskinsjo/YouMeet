@@ -12,7 +12,7 @@ const SuggestedMeets = ({ data }: { data: Employee[] | undefined | null }) => {
       {data?.map((emp: Employee) => (
         <div
           key={emp.id}
-          className='group min-w-[220px] bg-purple-100 m-[1px] relative'
+          className='group min-w-[220px] bg-white m-[1px] relative'
           data-test='card'
         >
           <div

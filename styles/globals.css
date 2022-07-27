@@ -9,6 +9,9 @@ body,
   margin: 0;
   font-family: 'Alegreya Sans', sans-serif;
 }
+html::-webkit-scrollbar {
+  display: none;
+}
 
 @keyframes appear_fastly {
   0% {
@@ -130,5 +133,20 @@ body,
   }
   .img-area {
     grid-area: img;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .bg-all-employees {
+    background: rgba(18, 0, 124, 0.05);
+  }
+  .bg-suggested-employees {
+    background: rgb(18, 0, 124);
+  }
+  .text-all-employees {
+    color: rgb(18, 0, 124);
+  }
+  .text-suggested-employees {
+    color: #f3f2f8;
   }
 }
