@@ -59,4 +59,10 @@ const AllEmployees = () => {
   )
 }
 
+async function getServerSideProps() {
+  return {
+    props: {},
+  }
+}
+
 export default AllEmployees

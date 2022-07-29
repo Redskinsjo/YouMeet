@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { BiLogInCircle } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
 import { useAuth0 } from '@auth0/auth0-react'
+// import { useDispatch } from 'react-redux'
 
 import Logo from '@/public/logo_transparent.png'
 import LocaleChoice from '@/components/locale'
@@ -93,7 +94,9 @@ export default function HeaderComponent({ classes }: HeaderComponentProps) {
                 color: '#2D1783',
               },
             }}
-            onClick={() => loginWithRedirect()}
+            onClick={() => {
+              return loginWithRedirect()
+            }}
           >
             {t('login')}
           </Button>

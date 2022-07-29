@@ -15,6 +15,7 @@ import { max, extent } from 'd3-array'
 
 import AreaChart from './area-chart'
 import MainAreaChart from './main-area-chart'
+import CustomAreaClosed from './custom-area-closed'
 
 // Initialize some variables
 const stock = appleStock.slice(1000)
@@ -191,6 +192,8 @@ function BrushChart({
           yScale={stockScale}
           gradientColor={background2}
         />
+        {/* <CustomAreaClosed data={filteredStock} width={150} height={150} /> */}
+
         <AreaChart
           hideBottomAxis
           hideLeftAxis

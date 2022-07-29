@@ -7,6 +7,9 @@ import { curveMonotoneX } from '@visx/curve'
 import { AppleStock } from '@visx/mock-data/lib/mocks/appleStock'
 import { arrayBuffer } from 'node:stream/consumers'
 
+import MainAreaChart from './main-area-chart'
+import CustomAreaClosed from './custom-area-closed'
+
 // Initialize some variables
 const axisColor = '#fff'
 const axisBottomTickLabelProps = {
@@ -66,6 +69,8 @@ export default function AreaChart({
         to={gradientColor}
         toOpacity={0.2}
       />
+      {/* <CustomAreaClosed data={data} width={150} height={150} /> */}
+
       <AreaClosed<AppleStock>
         data={data}
         x={(d) => xScale(getDate(d)) || 0}
